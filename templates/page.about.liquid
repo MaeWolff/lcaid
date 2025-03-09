@@ -1,13 +1,5 @@
-<section class="mt-20 gutter-px-1">
-  <h1 class="text-justify text-3xl font-medium lg:text-6xl">
-    Nous voulons sensibiliser, aider et transmettre des valeurs humaines. On veut encourager toutes les générations à
-    agir, peu importe l'échelle. On le fait car c'est nécessaire.<br>
-    {{ settings.who_benefits }}
-  </h1>
-</section>
-
-<section class="grid grid-cols-3 gutter-px-1">
-  {% for article in blogs['nos-actualites'].articles %}
-    <a href="{{ article.url }}">{{ article.title }}</a>
-  {% endfor %}
+<section
+  class="mt-[calc(var(--header-height)_+_1rem)] flex w-full flex-col gap-8 margin-px-1"
+>
+  <h1>About page</h1>
 </section>

@@ -8,7 +8,7 @@
   "
 >
   <article
-    class="sticky top-0 z-40 grid w-full grid-cols-3 border border-b-neutral-light-grey border-t-neutral-light-grey bg-white py-4 gutter-px-1"
+    class="sticky top-0 z-40 grid w-full grid-cols-3 border border-b-neutral-light-grey border-t-neutral-light-grey bg-white py-4 margin-px-1"
   >
     <p
       class="text-neutral-mid-grey"
@@ -40,7 +40,7 @@
   </article>
 
   <article
-    class="grid w-full grid-cols-2 gap-x-6 gap-y-10 gutter-px-1 md:grid-cols-3 lg:grid-cols-4"
+    class="grid w-full grid-cols-2 gap-x-6 gap-y-10 margin-px-1 md:grid-cols-3 lg:grid-cols-4"
     x-bind:class="{ 'grid-cols-1 lg:grid-cols-2': viewBy == 'list', 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4': viewBy == 'grid' }"
   >
     {% for product in collection.products | sort_by: sortBy %}

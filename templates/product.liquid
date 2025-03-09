@@ -1,7 +1,7 @@
 {% assign current_variant = product.selected_or_first_available_variant %}
 {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
 
-<div class="relative mt-[calc(var(--header-height)_+_1rem)] grid w-full grid-cols-1 gap-4 gutter-px-1 lg:grid-cols-[1fr_0.7fr] lg:gap-16">
+<div class="relative mt-[calc(var(--header-height)_+_1rem)] grid w-full grid-cols-1 gap-4 margin-px-1 lg:grid-cols-[1fr_0.7fr] lg:gap-16">
   <section class="grid grid-cols-1 bg-red-200">
     <img
       class="h-full w-full bg-neutral-light-grey object-contain"
