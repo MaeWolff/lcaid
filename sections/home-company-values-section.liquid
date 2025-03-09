@@ -15,6 +15,11 @@
       "name": "Bloc de valeur",
       "settings": [
         {
+          "type": "image_picker",
+          "id": "value_image",
+          "label": "Image"
+        },
+        {
           "type": "text",
           "id": "value_title",
           "label": "Titre de la valeur",
@@ -40,7 +45,15 @@
   <article class="mx-auto grid grid-cols-1 text-center gutter-gap-1 lg:w-[90%] lg:grid-cols-3">
     {% for block in section.blocks %}
       <div class="flex flex-col gap-6">
-        <div class="aspect-square bg-neutral-light-grey"></div>
+        <div class="aspect-square ">
+          <img
+            src="{{ block.settings.value_image | image_url }}"
+            alt="{{ block.settings.value_title }}"
+            class="h-full w-full object-cover"
+            width="100%"
+            height="100%"
+          >
+        </div>
 
         <h3 class="font-semibold">
           {{ block.settings.value_title }}

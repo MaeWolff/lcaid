@@ -8,7 +8,7 @@
         x-on:click="activeTab = 0"
         class="pb-2 text-neutral-mid-grey hover:opacity-80"
       >
-        Qamis
+        Pantalons
       </button>
 
       <button
@@ -16,20 +16,12 @@
         x-on:click="activeTab = 1"
         class="pb-2 text-neutral-mid-grey hover:opacity-80"
       >
-        Pantalons
+        Hauts
       </button>
 
       <button
         x-bind:class="{ 'text-neutral-black': activeTab === 2, 'text-neutral-mid-grey': activeTab !== 2 }"
         x-on:click="activeTab = 2"
-        class="pb-2 text-neutral-mid-grey hover:opacity-80"
-      >
-        Hauts
-      </button>
-
-      <button
-        x-bind:class="{ 'text-neutral-black': activeTab === 3, 'text-neutral-mid-grey': activeTab !== 3 }"
-        x-on:click="activeTab = 3"
         class="pb-2 text-neutral-mid-grey hover:opacity-80"
       >
         Accessoires
@@ -40,7 +32,7 @@
       <div x-show="activeTab === 0" class="w-full">
         <div class="grid w-full grid-cols-2 gap-4 lg:grid-cols-3">
           {% for product in collections.all.products %}
-            {% if product.tags contains 'qamis' %}
+            {% if product.tags contains 'pantalons' %}
               {% render 'collection-product-card', product: product %}
             {% endif %}
           {% endfor %}
@@ -50,16 +42,6 @@
       <div x-show="activeTab === 1" class="w-full">
         <div class="grid w-full grid-cols-2 gap-4 lg:grid-cols-3">
           {% for product in collections.all.products %}
-            {% if product.tags contains 'pantalons' %}
-              {% render 'collection-product-card', product: product %}
-            {% endif %}
-          {% endfor %}
-        </div>
-      </div>
-
-      <div x-show="activeTab === 2" class="w-full">
-        <div class="grid w-full grid-cols-2 gap-4 lg:grid-cols-3">
-          {% for product in collections.all.products %}
             {% if product.tags contains 'hauts' %}
               {% render 'collection-product-card', product: product %}
             {% endif %}
@@ -67,7 +49,7 @@
         </div>
       </div>
 
-      <div x-show="activeTab === 3" class="w-full">
+      <div x-show="activeTab === 2" class="w-full">
         <div class="grid w-full grid-cols-2 gap-4 lg:grid-cols-3">
           {% for product in collections.all.products %}
             {% if product.tags contains 'accessoires' %}
