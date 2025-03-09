@@ -1,0 +1,53 @@
+{
+  "general": {
+    "404": {
+      "title": "Not found",
+      "subtext_html": "The page you were looking for does not exist"
+    },
+    "header": {
+      "mobile": {
+        "close": "Fermer"
+      }
+    }
+  },
+  "cart": {
+    "title": "Panier",
+    "taxes": "Taxe incluse. Frais d’expédition et réductions calculés à l’étape du paiement.",
+    "empty": "Panier vide...",
+    "add": "Ajouter au panier",
+    "estimatedTotal": "Total estimé",
+    "buttons": {
+      "go": "Accéder au paiement",
+      "continue": "Continuer",
+      "delete": "Supprimer"
+    }
+  },
+  "products": {
+    "sizing_guide": "Guide des tailles",
+    "selectors": {
+      "select": "Sélectionner",
+      "size": "Taille",
+      "color": "Couleur"
+    },
+    "filters": {
+      "title": "Filtres",
+      "counts": "produits",
+      "viewBy": "Vue par"
+    },
+    "accordions": {
+      "descrition": "Description",
+      "cleaning": "Entretien",
+      "shipping": "Livraison & Retours"
+    },
+    "categories": {
+      "all": "Tous les produits"
+    }
+  },
+  "footer": {
+    "links": {
+      "policies": "Politiques",
+      "about": "À propos",
+      "socials": "Socials"
+    }
+  }
+}

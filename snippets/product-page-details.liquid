@@ -1,0 +1,98 @@
+<header class="flex flex-col gap-4">
+  <div class="flex flex-col gap-1">
+    <p class="text-[12px] text-neutral-mid-grey">Qamis</p>
+    <h1 class="text-[16px] font-semibold">{{ product.title | escape }}</h1>
+    <p class="text-neutral-mid-grey">{{ product.price | money }}</p>
+  </div>
+
+  <p>{{ product.metafields.custom.short_description }}</p>
+</header>
+
+<div x-data="productForm()" class="flex flex-col gap-4">
+  <div class="divide-y divide-neutral-light-grey border border-neutral-light-grey">
+    {% render 'product-page-sizes-drawer' %}
+    {% render 'product-page-colors-drawer' %}
+    {% render 'product-page-tissus-drawer' %}
+  </div>
+
+  <div class="flex w-full flex-row justify-between gap-6 text-neutral-mid-grey">
+    <p>Le mannequin mesure 176cm & porte une Taille M</p>
+    <p class="underline">{{ 'products.sizing_guide' | t }}</p>
+  </div>
+
+  <form action="/cart/add" method="post" class="mt-5">
+    <input type="hidden" name="id" :value="selectedVariantId">
+    <button
+      type="submit"
+      :disabled="!selectedVariantId"
+      class="w-full bg-neutral-black py-3 text-white disabled:bg-neutral-mid-grey"
+    >
+      {{ 'cart.add' | t }}
+    </button>
+  </form>
+</div>
+
+<script>
+  function productForm() {
+    return {
+      hasSize: false,
+      hasColor: false,
+      sizes: [],
+      colors: [],
+      variants: {{ product.variants | json }},
+
+      selectedSize: null,
+      selectedColor: null,
+      selectedVariantId: '{{ product.selected_or_first_available_variant.id }}',
+
+      init() {
+        const options = {{ product.options_with_values | json }};
+        const colorMeta = {{ product.metafields.shopify.color-pattern.value | json }};
+
+        options.forEach(option => {
+          if (option.name === 'Size' || option.name === "Taille") {
+            this.hasSize = true;
+            this.sizes = option.values
+          }
+
+          if (option.name === 'Couleur' || option.name === "Color") {
+            this.hasColor = true;
+            this.colors = option.values.map(colorName => {
+              let colorObj = colorMeta.find(c => c.label === colorName);
+              return {
+                name: colorName,
+                hex: colorObj ? colorObj.color : '#000000'
+              };
+            });
+          }
+        });
+
+        this.updateVariant();
+      },
+
+      selectSize(size) {
+        this.selectedSize = size;
+        this.updateVariant();
+      },
+
+      selectColor(color) {
+        this.selectedColor = color;
+        this.updateVariant();
+      },
+
+      updateVariant() {
+        const variant = this.variants.find(v => {
+          const matchesSize = !this.hasSize || v.option1 === this.selectedSize;
+          const matchesColor = !this.hasColor || v.option2 === this.selectedColor.name;
+          return matchesSize && matchesColor;
+        });
+
+        this.selectedVariantId = variant ? variant.id : null;
+      },
+    };
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    productForm().init();
+  });
+</script>

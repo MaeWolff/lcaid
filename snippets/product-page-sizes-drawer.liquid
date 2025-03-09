@@ -1,0 +1,49 @@
+{% assign has_size = false %}
+
+{%- for option in product.options_with_values -%}
+  {%- if option.name == 'Size' or option.name == 'Taille' -%}
+    {% assign has_size = true %}
+  {%- endif -%}
+{%- endfor -%}
+
+{% capture size_drawer_title %}
+    <div class="flex w-full justify-between">
+      <span class="font-semibold">{{  "products.selectors.size" | t}}</span>
+      <span
+        x-text="selectedSize ? selectedSize : '{{ "products.selectors.select" | t }}'"
+        :class="{ 'text-neutral-mid-grey': !selectedSize, 'text-neutral-black': selectedSize }"
+      ></span>
+    </div>
+  {% endcapture %}
+
+{% capture size_drawer_content %}
+  <div class="flex flex-wrap gap-4">
+    <template x-for="size in sizes" :key="size">
+      <button
+        type="button"
+        @click="selectSize(size)"
+        class="min-w-28 px-4 py-2 text-center"
+        :class="{ 'border border-neutral-black': selectedSize === size, 'border border-neutral-light-grey': selectedSize !== size }"
+      >
+        <span x-text="size"></span>
+      </button>
+    </template>
+
+    <button
+      :disabled="!selectedSize"
+      class="w-full bg-neutral-black py-3 text-white disabled:bg-neutral-mid-grey"
+      @click="closeDrawer()"
+    >
+      Appliquer la séléction
+    </button>
+  </div>
+{% endcapture %}
+
+{% if has_size %}
+  {% render 'drawer',
+    button_text: size_drawer_title,
+    button_classes: 'w-full p-4',
+    title: 'Tailles',
+    content: size_drawer_content
+  %}
+{% endif %}

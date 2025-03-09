@@ -1,0 +1,54 @@
+{% schema %}
+{
+  "name": "Valeurs de la boutique",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Titre de la section",
+      "default": "Nos valeurs"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value_block",
+      "name": "Bloc de valeur",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value_title",
+          "label": "Titre de la valeur",
+          "default": "Excellence"
+        },
+        {
+          "type": "textarea",
+          "id": "value_text",
+          "label": "Texte de la valeur",
+          "default": "Nous nous efforçons d'atteindre l'excellence dans tout ce que nous faisons."
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<section class="flex w-full flex-col items-center justify-center gap-10 py-16 gutter-px-1">
+  <h2 class="text-[16px] font-semibold">
+    {{ section.settings.section_title }}
+  </h2>
+
+  <article class="mx-auto grid grid-cols-1 text-center gutter-gap-1 lg:w-[90%] lg:grid-cols-3">
+    {% for block in section.blocks %}
+      <div class="flex flex-col gap-6">
+        <div class="aspect-square bg-neutral-light-grey"></div>
+
+        <h3 class="font-semibold">
+          {{ block.settings.value_title }}
+        </h3>
+        <p class="text-neutral-mid-grey">
+          {{ block.settings.value_text }}
+        </p>
+      </div>
+    {% endfor %}
+  </article>
+</section>

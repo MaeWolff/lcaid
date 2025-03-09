@@ -1,0 +1,23 @@
+{% assign has_tissu = false %}
+
+{% for option in product.options_with_values %}
+  {% if option.name == 'Tissu' %}
+    {% assign has_tissu = true %}
+  {% endif %}
+{% endfor %}
+
+{% if has_tissu %}
+  {% capture tissus_drawer_title %}
+    <div class="flex w-full flex-row justify-between">
+      <span class="font-semibold">Tissu</span>
+      <span>Coton</span>
+    </div>
+  {% endcapture %}
+
+  {% render 'drawer',
+    button_text: tissus_drawer_title,
+    button_classes: 'w-full p-4',
+    title: 'Tissus',
+    content: size-drawer
+  %}
+{% endif %}

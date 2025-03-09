@@ -1,0 +1,37 @@
+<div class="fixed inset-0 z-[99999] flex flex-col items-center justify-center gap-1" id="loader">
+  <p id="loader-text" class="font-edp z-10 text-4xl">ENFAN DE PALESTINE</p>
+  <div class="absolute inset-0 z-0 bg-white" id="white-bg"></div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const loaderText = document.getElementById('loader-text');
+    const textContent = loaderText.textContent;
+
+    loaderText.innerHTML = textContent
+      .split('')
+      .map((letter) => {
+        return `<span class="inline-block">${letter === ' ' ? '&nbsp;' : letter}</span>`;
+      })
+      .join('');
+
+    gsap.fromTo('#loader-text span', { opacity: 0, y: 20 }, { opacity: 1, y: 0, stagger: 0.05, ease: 'power2.out' });
+
+    gsap.to('#loader-text', {
+      opacity: 0,
+      duration: 0.6,
+      delay: 1,
+      ease: 'power2.out',
+    });
+
+    gsap.to('#white-bg', {
+      y: '-100%',
+      duration: 1.5,
+      delay: 1.2,
+      ease: 'expo.inOut',
+      onComplete: () => {
+        document.getElementById('loader').remove();
+      },
+    });
+  });
+</script>

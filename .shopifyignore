@@ -1,0 +1,11 @@
+.vscode/
+
+.github/
+.gitignore
+.git/
+
+node_modules
+
+assets/.vite/*
+
+package.json

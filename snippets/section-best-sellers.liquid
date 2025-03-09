@@ -1,0 +1,12 @@
+<section class="flex w-full flex-col gap-6 gutter-px-1">
+  <header class="mx-auto flex w-full flex-col gap-3 lg:w-3/4">
+    <div class="h-[1px] w-full bg-neutral-black"></div>
+    <h2 class="uppercase">Best Sellers</h2>
+  </header>
+
+  <article class="grid w-full grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-3 ">
+    {% for product in collections.all.products | limit: 3 | sort_by: "best-selling" %}
+      {% render 'product-card', product: product %}
+    {% endfor %}
+  </article>
+</section>

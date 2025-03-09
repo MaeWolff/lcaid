@@ -1,0 +1,83 @@
+{
+  "current": {
+    "announcement_bar_enabled": false,
+    "sections": {
+      "home-carousel-section": {
+        "type": "home-carousel-section",
+        "settings": {
+          "image_1": "shopify://shop_images/0C5A9838-scaled.jpg",
+          "product_1": "cape-moon",
+          "image_2": "shopify://shop_images/0C5A9838-scaled.jpg",
+          "product_2": "chemise-shafid",
+          "image_3": "shopify://shop_images/0C5A9838-scaled.jpg",
+          "product_3": "chemise-moon"
+        }
+      },
+      "home-complete-look-section": {
+        "type": "home-complete-look-section",
+        "settings": {}
+      },
+      "home-discover-product-section": {
+        "type": "home-discover-product-section",
+        "settings": {
+          "image_1": "shopify://shop_images/0C5A9838-scaled.jpg",
+          "selected_product": "chemise-shafid"
+        }
+      },
+      "contact-form-section": {
+        "type": "contact-form-section",
+        "settings": {
+          "image": "shopify://shop_images/0C5A9838-scaled.jpg"
+        }
+      },
+      "home-double-collections-section": {
+        "type": "home-double-collections-section",
+        "settings": {
+          "collection_1": "collection-moon",
+          "collection_2": "collection-2"
+        }
+      },
+      "home-company-values-section": {
+        "type": "home-company-values-section",
+        "blocks": {
+          "value_block_jDrdTR": {
+            "type": "value_block",
+            "settings": {
+              "value_title": "Sur-mesure",
+              "value_text": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt iste earum sunt maiores"
+            }
+          },
+          "value_block_MjnPW8": {
+            "type": "value_block",
+            "settings": {
+              "value_title": "Dimension halal",
+              "value_text": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt iste earum sunt maiores"
+            }
+          },
+          "value_block_Qrd9r4": {
+            "type": "value_block",
+            "settings": {
+              "value_title": "Éco-responsable",
+              "value_text": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt iste earum sunt maiores"
+            }
+          }
+        },
+        "block_order": ["value_block_jDrdTR", "value_block_MjnPW8", "value_block_Qrd9r4"],
+        "settings": {
+          "section_title": "Nos valeurs"
+        }
+      },
+      "footer-section": {
+        "type": "footer-section",
+        "settings": {
+          "presentation_who": "Sarah R. Créatrice LCAID",
+          "presentation_text": "Sarah, passionnée de mode depuis l’enfance, a forgé son talent dès ses 10 ans en conseillant son entourage et en dessinant ses premiers croquis."
+        }
+      }
+    },
+    "content_for_index": []
+  },
+  "presets": {
+    "Default": {}
+  }
+}

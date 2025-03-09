@@ -1,0 +1,36 @@
+<div id="drawer-overlay" class="fixed inset-0 z-[220] hidden bg-neutral-black/40"></div>
+
+<div
+  id="cart-drawer"
+  class="fixed right-0 top-0 z-[250] flex h-screen w-[90%] translate-x-full flex-col overflow-y-auto bg-white transition-transform duration-500 lg:w-[40%] lg:flex-row"
+  tabindex="-1"
+  aria-labelledby="drawer-label"
+  data-ajax-cart-section
+>
+  <div
+    class="flex h-screen w-full flex-col gap-5 border-l border-neutral-light-grey px-4 py-5 lg:px-8"
+  >
+    <header class="flex w-full items-center justify-between">
+      <p
+        id="cart-count"
+        class="flex h-5 w-5 items-center justify-center rounded-full bg-neutral-mid-grey font-medium text-white"
+      >
+        {{ cart.item_count }}
+      </p>
+
+      <h5 id="drawer-label" class="text-lg">{{ 'cart.title' | t }}</h5>
+
+      <button class="group flex items-center gap-2" type="button" data-drawer-hide="cart-drawer">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.02096 1.02079C4.88695 4.88679 10.9205 10.9203 10.9205 10.9203M10.9205 1.02079L1.02096 10.9203" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </header>
+
+    {% render 'cart-drawer-reassurances' %}
+
+    <div class="flex h-full flex-col justify-between">
+      {% render 'cart-drawer-items' %}
+    </div>
+  </div>
+</div>

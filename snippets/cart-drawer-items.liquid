@@ -1,0 +1,118 @@
+{% assign is_cart_empty = cart.empty? %}
+
+{% form 'cart', cart, class: 'flex flex-col gap-8 h-full justify-between', id: 'cart-drawer-items' %}
+  <div class="flex h-full flex-col justify-between">
+    {% if is_cart_empty %}
+      <p class="inline-flex h-full w-full items-center justify-center text-center text-5xl font-medium">
+        {{ 'cart.empty' | t }}
+      </p>
+
+      <footer class="inline-flex h-fit flex-col justify-end gap-8 bg-white">
+        <hr class="h-[1px] border-t-0 bg-neutral-light-grey">
+
+        <div class="flex flex-col gap-5">
+          <div class="flex flex-col gap-2">
+            <div class="flex w-full justify-between gap-2 font-medium">
+              <p class="text-nowrap">{{ 'cart.estimatedTotal' | t }}</p>
+              <p class="text-end">
+                {{ cart.total_price | money }}
+              </p>
+            </div>
+
+            <p class="text-[10px] text-neutral-dark-grey">
+              {{ 'cart.taxes' | t }}
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <div
+              class="flex w-full flex-row items-center justify-center border border-neutral-light-grey bg-white p-2 text-neutral-dark-grey"
+            >
+              {{ 'cart.empty' | t }}
+            </div>
+
+            <button
+              class="flex w-full flex-row items-center justify-center border border-neutral-light-grey bg-white p-2 text-neutral-dark-grey hover:bg-neutral-light-grey"
+              type="button"
+              data-drawer-hide="cart-drawer"
+              aria-controls="cart-drawer"
+            >
+              {{ 'cart.buttons.continue' | t }}
+            </button>
+          </div>
+        </div>
+      </footer>
+
+    {% else %}
+      <section class="flex max-h-[53vh] flex-col gap-8 overflow-y-auto" data-ajax-cart-section>
+        {% for line_item in cart.items %}
+          <article class="flex w-full flex-col gap-5" data-line-item-key="{{ line_item.key }}">
+            <div class="flex w-full justify-between gap-5">
+              <img
+                class="aspect-square h-[134px] w-[134px] object-cover"
+                src="{{ line_item.image | image_url: width: 500 }}"
+                width="100%"
+                height="100%"
+              >
+
+              <div class="flex w-full flex-col justify-between">
+                <div class="flex w-full flex-col gap-2">
+                  <p class="font-medium">{{ line_item.title | escape }}</p>
+                  <p class="text-neutral-mid-grey">{{ line_item.product.metafields.custom.short_description }}</p>
+                </div>
+
+                <p class="font-medium">{{ line_item.price | money }}</p>
+
+                <button id="cart-drawer-remove-item" class="w-fit underline" data-line-item-key="{{ line_item.key }}">
+                  {{ 'cart.buttons.delete' | t }}
+                </button>
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      </section>
+
+      <footer class="inline-flex h-fit flex-col justify-end gap-8 bg-white">
+        <hr class="h-[1px] border-t-0 bg-neutral-light-grey">
+
+        <div class="flex flex-col gap-5">
+          <div class="flex flex-col gap-2">
+            <div class="flex w-full justify-between gap-2 font-medium">
+              <p class="text-nowrap">{{ 'cart.estimatedTotal' | t }}</p>
+              <p class="text-end">
+                {{ cart.total_price | money }}
+              </p>
+            </div>
+
+            <p class="text-neutral-dark-grey">
+              {{ 'cart.taxes' | t }}
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <button
+              data-ajax-cart-bind="total_price | money"
+              type="submit"
+              name="checkout"
+              class="flex w-full flex-row items-center justify-center bg-neutral-black p-2 text-white hover:bg-neutral-black/80"
+              {% if cart == empty %}
+                disabled
+              {% endif %}
+            >
+              {{ 'cart.buttons.go' | t }} - {{ cart.total_price | money }}
+            </button>
+
+            <button
+              class="flex w-full flex-row items-center justify-center border border-neutral-light-grey bg-white p-2 text-neutral-dark-grey hover:bg-neutral-light-grey"
+              type="button"
+              data-drawer-hide="cart-drawer"
+              aria-controls="cart-drawer"
+            >
+              {{ 'cart.buttons.continue' | t }}
+            </button>
+          </div>
+        </div>
+      </footer>
+    {% endif %}
+  </div>
+{% endform %}

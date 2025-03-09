@@ -1,0 +1,14 @@
+{
+  "tailwindConfig": "./tailwind.config.js",
+  "printWidth": 120,
+  "plugins": ["@shopify/prettier-plugin-liquid", "prettier-plugin-tailwindcss"],
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": "*.liquid",
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ]
+}

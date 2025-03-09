@@ -1,0 +1,157 @@
+{% schema %}
+{
+  "name": "Carousel",
+  "class": "w-full h-full",
+  "settings": [
+    {
+      "type": "image_picker",
+      "label": "Image 1",
+      "id": "image_1"
+    },
+    {
+      "type": "product",
+      "label": "Produit 1",
+      "id": "product_1"
+    },
+    {
+      "type": "image_picker",
+      "label": "Image 2",
+      "id": "image_2"
+    },
+    {
+      "type": "product",
+      "label": "Produit 2",
+      "id": "product_2"
+    },
+    {
+      "type": "image_picker",
+      "label": "Image 3",
+      "id": "image_3"
+    },
+    {
+      "type": "product",
+      "label": "Produit 3",
+      "id": "product_3"
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  x-data="carousel({ slidesCount: 3 })"
+  class="relative flex h-[95vh] w-screen flex-col items-center justify-center"
+>
+  <div class="relative h-full w-full overflow-hidden">
+    {% assign product_handle = section.settings.product_1 %}
+    {% assign selected_product_1 = all_products[product_handle] %}
+
+    <a
+      x-show="activeIndex === 0"
+      x-transition:enter="transition-opacity duration-[1200ms] ease-in-out"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="transition-opacity duration-[1200ms] ease-in-out"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="absolute inset-0 flex items-center justify-center"
+      href="{{ selected_product_1.url  }}"
+    >
+      <img
+        src="{{ section.settings.image_1 | image_url }}"
+        alt=""
+        class="h-full w-full object-cover object-top"
+        width="100%"
+        height="100%"
+      >
+      <div class="absolute bottom-8 flex flex-col gap-4 text-center text-white">
+        <h2 class="text-[18px] font-medium">{{ selected_product_1.title }}</h2>
+        <p class="max-w-[40ch]">{{ selected_product_1.metafields.custom.short_description }}</p>
+      </div>
+    </a>
+
+    {% assign product_handle = section.settings.product_2 %}
+    {% assign selected_product_2 = all_products[product_handle] %}
+    <a
+      x-show="activeIndex === 1"
+      x-transition:enter="transition-opacity duration-[1200ms] ease-in-out"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="transition-opacity duration-[1200ms] ease-in-out"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="absolute inset-0 flex items-center justify-center"
+      href="{{ selected_product_2.url  }}"
+    >
+      <img
+        src="{{ section.settings.image_2 | image_url }}"
+        alt=""
+        class="h-full w-full object-cover object-top"
+        height="100%"
+        width="100%"
+      >
+      <div class="absolute bottom-8 flex flex-col gap-8 text-center text-white">
+        <h2 class="text-[18px] font-medium">{{ selected_product_2.title }}</h2>
+        <p class="max-w-[40ch]">{{ selected_product_2.metafields.custom.short_description }}</p>
+      </div>
+    </a>
+
+    {% assign product_handle = section.settings.product_3 %}
+    {% assign selected_product_3 = all_products[product_handle] %}
+    <a
+      x-show="activeIndex === 2"
+      x-transition:enter="transition-opacity duration-[1200ms] ease-in-out"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="transition-opacity duration-[1200ms] ease-in-out"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="absolute inset-0 flex items-center justify-center"
+      href="{{ selected_product_3.url }}"
+    >
+      <img
+        src="{{ section.settings.image_3 | image_url }}"
+        alt=""
+        class="h-full w-full object-cover object-top"
+        height="100%"
+        width="100%"
+      >
+      <div class="absolute bottom-8 flex flex-col gap-8 text-center text-white">
+        <h2 class="text-[18px] font-medium">{{ selected_product_3.title }}</h2>
+        <p class="max-w-[40ch]">{{ selected_product_3.metafields.custom.short_description }}</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="absolute flex flex-col gap-4 text-white gutter-right-1 lg:bottom-8  lg:flex-row lg:gutter-left-4">
+    <span x-text="`${activeIndex + 1}`"></span>
+    <span>|</span>
+    <span x-text="slidesCount"></span>
+  </div>
+</section>
+
+<script>
+  function carousel({ slidesCount }) {
+    return {
+      activeIndex: 0,
+      slidesCount,
+
+      init() {
+        this.startCarousel(5000);
+      },
+
+      startCarousel(interval) {
+        this.interval = setInterval(() => {
+          this.next();
+        }, interval);
+      },
+
+      next() {
+        this.activeIndex = (this.activeIndex + 1) % this.slidesCount;
+      },
+
+      prev() {
+        this.activeIndex = (this.activeIndex - 1 + this.slidesCount) % this.slidesCount;
+      },
+    };
+  }
+</script>

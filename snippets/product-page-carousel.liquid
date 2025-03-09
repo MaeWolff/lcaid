@@ -1,0 +1,20 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+
+<article class="h-[80dvh] w-full">
+  <img
+    class="h-full w-full object-cover"
+    src="{{ featured_image | image_url: 'large' }}"
+    alt="{{ featured_image.alt | escape }}"
+    id="ProductPhotoImg"
+    width="100%"
+    height="100%"
+  >
+  {% comment %}
+    {% for image in product.images %}
+      <a href="{{ image.src | img_url: 'large' }}" class="w-fit">
+        <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+      </a>
+    {% endfor %}
+  {% endcomment %}
+</article>

@@ -1,0 +1,53 @@
+{
+  "general": {
+    "404": {
+      "title": "غير موجود",
+      "subtext_html": "الصفحة التي تبحث عنها غير موجودة"
+    },
+    "header": {
+      "mobile": {
+        "close": "إغلاق"
+      }
+    }
+  },
+  "cart": {
+    "title": "سلة التسوق",
+    "taxes": "الضرائب مشمولة. يتم حساب رسوم الشحن والخصومات في خطوة الدفع.",
+    "empty": "السلة فارغة...",
+    "add": "أضف إلى السلة",
+    "estimatedTotal": "الإجمالي المقدر",
+    "buttons": {
+      "go": "الانتقال إلى الدفع",
+      "continue": "متابعة",
+      "delete": "حذف"
+    }
+  },
+  "products": {
+    "sizing_guide": "دليل المقاسات",
+    "selectors": {
+      "select": "اختر",
+      "size": "المقاس",
+      "color": "اللون"
+    },
+    "filters": {
+      "title": "الفلاتر",
+      "counts": "منتجات",
+      "viewBy": "عرض حسب"
+    },
+    "accordions": {
+      "descrition": "الوصف",
+      "cleaning": "العناية",
+      "shipping": "الشحن & الإرجاع"
+    },
+    "categories": {
+      "all": "جميع المنتجات"
+    }
+  },
+  "footer": {
+    "links": {
+      "policies": "السياسات",
+      "about": "حول",
+      "socials": "التواصل الاجتماعي"
+    }
+  }
+}

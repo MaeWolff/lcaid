@@ -1,0 +1,34 @@
+<div x-data="{ open: false, closeDrawer() { this.open = false } }">
+  <button @click="open = true" class="{{ button_classes }}" type="button">
+    {{ button_text }}
+  </button>
+
+  <div
+    x-show="open"
+    x-transition.opacity
+    @click="open = false"
+    class="fixed inset-0 z-[100] bg-black bg-opacity-50"
+    x-cloak
+  ></div>
+
+  <div
+    x-show="open"
+    x-transition:enter="transform transition ease-in-out duration-300"
+    x-transition:enter-start="translate-x-full"
+    x-transition:enter-end="translate-x-0"
+    x-transition:leave="transform transition ease-in-out duration-300"
+    x-transition:leave-start="translate-x-0"
+    x-transition:leave-end="translate-x-full"
+    class="fixed right-0 top-0 z-[600] flex h-full w-[80vw] flex-col gap-12 bg-white p-6 shadow-lg lg:w-[30vw]"
+    x-cloak
+  >
+    <header class="mt-header-size flex w-full flex-row items-center justify-between text-[16px] font-medium">
+      {{ title }}
+      <button @click="open = false" class="text-xl font-normal text-neutral-mid-grey hover:text-black">&times;</button>
+    </header>
+
+    <div>
+      {{ content }}
+    </div>
+  </div>
+</div>

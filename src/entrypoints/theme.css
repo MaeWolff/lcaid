@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+  display: none !important;
+}
+
+:root {
+  --header-height: 71px;
+  --progress: 0;
+}
+
+/*  Loading button state */
+
+.btn-loading {
+  background-color: #010101;
+  color: #010101;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.btn-loading::after {
+  content: '';
+  border: 2px solid white;
+  border-radius: 50%;
+  border-top: 2px solid #000;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

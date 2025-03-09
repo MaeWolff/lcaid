@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {%- liquid
+      render 'vite-tag' with 'theme.css'
+      render 'vite-tag' with 'css/fonts.css'
+      render 'vite-tag' with 'cart-drawer.js'
+      render 'vite-tag' with 'theme.js'
+    -%}
+
+    {{ content_for_header }}
+  </head>
+
+  <script>
+    window.shopUrl = '{{ request.origin }}';
+    window.locale = '{{ shop.locale }}';
+    window.routes = {
+      cart_add_url: '{{ routes.cart_add_url }}',
+      cart_change_url: '{{ routes.cart_change_url }}',
+      cart_update_url: '{{ routes.cart_update_url }}',
+      cart_url: '{{ routes.cart_url }}',
+      predictive_search_url: '{{ routes.predictive_search_url }}',
+    };
+  </script>
+
+  <body class="grid-container relative w-full font-satoshi text-[14px] text-neutral-black antialiased">
+    {% render 'header' %}
+
+    <main class="flex w-full flex-col items-center justify-between gap-8">
+      {{ content_for_layout }}
+    </main>
+
+    {% render 'footer' %}
+
+    {% render 'cart-drawer' %}
+  </body>
+</html>

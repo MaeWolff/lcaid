@@ -1,0 +1,98 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "LCAID",
+    "theme_version": "1.0.0",
+    "theme_author": "AUTHOR",
+    "theme_documentation_url": "https://fichu.studio",
+    "theme_support_url": "https://fichu.studio"
+  },
+  {
+    "name": "Announcement Bar",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "announcement_bar_enabled",
+        "label": "Show announcement bar",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "announcement_bar_text",
+        "label": "Texte",
+        "default": "Prochaine sortie de collection: 24/03/2025"
+      }
+    ]
+  },
+  {
+    "name": "À modifier",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Associatif"
+      },
+      {
+        "type": "textarea",
+        "id": "who_benefits",
+        "label": "Nos profits"
+      },
+      {
+        "type": "url",
+        "id": "who_link",
+        "label": "Lien de l'asso"
+      },
+      {
+        "type": "header",
+        "content": "Réassurance"
+      },
+      {
+        "type": "text",
+        "id": "reassurance_title_1",
+        "label": "Titre",
+        "default": "Made in Paris"
+      },
+      {
+        "type": "textarea",
+        "id": "reassurance_text_1",
+        "label": "Description",
+        "default": "Eget ut nullam adipiscing vitae tortor nec. Odio curabitur cras ultrices curabitur turpis."
+      },
+      {
+        "type": "text",
+        "id": "reassurance_title_2",
+        "label": "Titre",
+        "default": "Shipping & Returns"
+      },
+      {
+        "type": "textarea",
+        "id": "reassurance_text_2",
+        "label": "Description",
+        "default": "Eget ut nullam adipiscing vitae tortor nec."
+      },
+      {
+        "type": "text",
+        "id": "reassurance_title_3",
+        "label": "Titre",
+        "default": "A remplir"
+      },
+      {
+        "type": "textarea",
+        "id": "reassurance_text_3",
+        "label": "Description",
+        "default": "Eget ut nullam adipiscing vitae tortor nec odio curabitur"
+      },
+      {
+        "type": "text",
+        "id": "reassurance_title_4",
+        "label": "Titre",
+        "default": "A remplir"
+      },
+      {
+        "type": "textarea",
+        "id": "reassurance_text_4",
+        "label": "Description",
+        "default": "Eget ut nullam adipiscing vitae tortor nec. Odio curabitur cras ultrices curabitur turpis."
+      }
+    ]
+  }
+]

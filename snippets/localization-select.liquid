@@ -1,0 +1,14 @@
+{% form 'localization' %}
+  <select name="language_code" id="language-selector" @change="event.target.form.submit()" class="bg-transparent">
+    {% for language in localization.available_languages %}
+      <option
+        value="{{ language.iso_code }}"
+        {% if localization.language.iso_code == language.iso_code %}
+          selected
+        {% endif %}
+      >
+        {{ language.iso_code | upcase }}
+      </option>
+    {% endfor %}
+  </select>
+{% endform %}

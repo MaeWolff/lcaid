@@ -1,0 +1,15 @@
+{% form 'currency', id: 'currency-switcher' %}
+  <select name="currency" onchange="event.target.form.submit();" class="cursor-pointer bg-transparent">
+    {% for currency in shop.enabled_currencies %}
+      {% assign iso_code = currency.iso_code %}
+      <option
+        value="{{ iso_code }}"
+        {% if iso_code == cart.currency.iso_code %}
+          selected
+        {% endif %}
+      >
+        ({{ currency.symbol }}) - {{ iso_code }}
+      </option>
+    {% endfor %}
+  </select>
+{% endform %}

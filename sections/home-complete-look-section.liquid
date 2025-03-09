@@ -1,0 +1,89 @@
+<section class="flex w-screen flex-col items-center justify-center gap-10 py-16 gutter-px-1">
+  <h2 class="text-[16px] font-semibold">Complete the look</h2>
+
+  <div x-data="tabs()" class="mx-auto flex w-full flex-col gap-9">
+    <div class="flex w-full items-center justify-center space-x-4">
+      <button
+        x-bind:class="{ 'text-neutral-black': activeTab === 0, 'text-neutral-mid-grey': activeTab !== 0 }"
+        x-on:click="activeTab = 0"
+        class="pb-2 text-neutral-mid-grey hover:opacity-80"
+      >
+        Qamis
+      </button>
+
+      <button
+        x-bind:class="{ 'text-neutral-black': activeTab === 1, 'text-neutral-mid-grey': activeTab !== 1 }"
+        x-on:click="activeTab = 1"
+        class="pb-2 text-neutral-mid-grey hover:opacity-80"
+      >
+        Pantalons
+      </button>
+
+      <button
+        x-bind:class="{ 'text-neutral-black': activeTab === 2, 'text-neutral-mid-grey': activeTab !== 2 }"
+        x-on:click="activeTab = 2"
+        class="pb-2 text-neutral-mid-grey hover:opacity-80"
+      >
+        Hauts
+      </button>
+
+      <button
+        x-bind:class="{ 'text-neutral-black': activeTab === 3, 'text-neutral-mid-grey': activeTab !== 3 }"
+        x-on:click="activeTab = 3"
+        class="pb-2 text-neutral-mid-grey hover:opacity-80"
+      >
+        Accessoires
+      </button>
+    </div>
+
+    <div class="mx-auto w-[90%]">
+      <div x-show="activeTab === 0" class="w-full">
+        <div class="grid w-full grid-cols-2 gap-4 lg:grid-cols-3">
+          {% for product in collections.all.products %}
+            {% if product.tags contains 'qamis' %}
+              {% render 'collection-product-card', product: product %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div x-show="activeTab === 1" class="w-full">
+        <div class="grid w-full grid-cols-2 gap-4 lg:grid-cols-3">
+          {% for product in collections.all.products %}
+            {% if product.tags contains 'pantalons' %}
+              {% render 'collection-product-card', product: product %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div x-show="activeTab === 2" class="w-full">
+        <div class="grid w-full grid-cols-2 gap-4 lg:grid-cols-3">
+          {% for product in collections.all.products %}
+            {% if product.tags contains 'hauts' %}
+              {% render 'collection-product-card', product: product %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div x-show="activeTab === 3" class="w-full">
+        <div class="grid w-full grid-cols-2 gap-4 lg:grid-cols-3">
+          {% for product in collections.all.products %}
+            {% if product.tags contains 'accessoires' %}
+              {% render 'collection-product-card', product: product %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function tabs() {
+    return {
+      activeTab: 0,
+    };
+  }
+</script>

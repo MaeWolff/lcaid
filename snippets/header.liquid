@@ -1,0 +1,170 @@
+{% render 'vite-tag' with 'js/header.js' %}
+
+<header
+  class="fixed right-2/4 z-50  flex h-[var(--header-height)] w-full translate-x-1/2 transform flex-col transition-transform duration-300 ease-in-out"
+  x-data="
+    {
+      isHidden: false,
+      lastScroll: window.pageYOffset,
+      init() {
+        window.addEventListener('scroll', () => {
+          const currentScroll = window.pageYOffset;
+          this.isHidden = currentScroll > this.lastScroll && currentScroll > 30;
+          this.lastScroll = currentScroll;
+        });
+      }
+    }
+  "
+  :class="{ '-translate-y-full': isHidden }"
+>
+  {%- if settings.announcement_bar_enabled -%}
+    <div class="flex w-full items-center justify-center bg-neutral-black py-1 text-[12px] text-white">
+      <p>{{ settings.announcement_bar_text }}</p>
+    </div>
+  {%- endif -%}
+
+  <div
+    class="grid h-full grid-cols-[1fr_auto_1fr] items-center gutter-px-1"
+    :class="
+      {
+        'bg-gradient-to-b from-black/30 to-transparent text-white': isHome && !scrolled,
+        'bg-white text-neutral-black': !isHome || scrolled
+      }
+    "
+    x-data="
+      {
+        isHome: window.location.pathname === '{{ routes.root_url }}',
+        scrolled: false,
+        init() {
+          window.addEventListener('scroll', () => {
+          this.scrolled = window.scrollY > 30;
+          });
+        }
+      }
+    "
+  >
+    {% comment %}
+      <nav class="hidden flex-row place-content-start items-center gap-5 lg:flex">
+        {% for link in linklists['main-menu'].links -%}
+          <a class="{% if link.active %}italic{% endif %}" href="{{ link.url }}">
+            {{ link.title }}
+
+            <span class="h-5 w-full bg-neutral-black"></span>
+          </a>
+        {%- endfor %}
+      </nav>
+    {% endcomment %}
+
+    <button class="flex w-fit flex-row items-center gap-3" id="mobile-menu-button">
+      <div class="flex flex-col gap-2">
+        <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0.833984H16.848V3.34886H0V0.833984Z" fill="currentColor"/>
+          <path d="M0 8.74887H16.848V11.166H0V8.74887Z" fill="currentColor"/>
+        </svg>
+      </div>
+
+      <p>Menu</p>
+    </button>
+
+    {% render 'logo' %}
+
+    <nav class="flex flex-row place-content-end items-center gap-4">
+      <div class="hidden lg:block">{% render 'currency-select' %}</div>
+      <div class="hidden lg:block">{% render 'localization-select' %}</div>
+
+      <button
+        class="relative flex items-start gap-1"
+        data-drawer-target="cart-drawer"
+        data-drawer-show="cart-drawer"
+        aria-controls="cart-drawer"
+        data-ajax-cart-section
+      >
+        {{ 'cart.title' | t }}
+        <span id="cart-count">({{ cart.item_count }})</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+{% comment %} Drawer Header {% endcomment %}
+<div
+  id="mobile-menu"
+  class="fixed left-0 top-0 z-50 h-full w-[80%] -translate-x-full transform bg-white p-4 transition-transform duration-300 lg:w-[30%]"
+>
+  <div class="flex h-full flex-col items-center gap-6">
+    <header class="flex w-full items-center justify-between">
+      <p class="text-[18px] font-medium">Menu</p>
+      <button id="close-mobile-menu">{% render 'icon-close' %}</button>
+    </header>
+
+    <nav class="flex w-full flex-col gap-2 text-[16px]">
+      <div x-data="{ open: false }">
+        <button id="shop-link" class="flex w-full justify-between py-2" @click="open = !open">
+          <p>Boutique</p>
+          <span :class="open ? 'rotate-90' : ''" class="transition-transform duration-200">
+            {% render 'icon-arrow-right-simple' %}
+          </span>
+        </button>
+
+        <div x-show="open" class="ml-4 flex flex-col gap-2 overflow-hidden text-[14px] transition-all duration-300">
+          <a href="{{ routes.all_products_collection_url }}/all }}" class="flex w-full justify-between py-2">
+            Tous les produits
+          </a>
+
+          <a href="{{ routes.all_products_collection_url }}/qamis }}" class="flex w-full justify-between py-2">
+            Qamis
+          </a>
+
+          <a href="{{ routes.all_products_collection_url }}/qamis }}" class="flex w-full justify-between py-2">
+            Chemises & Chemisiers
+          </a>
+
+          <a href="{{ routes.all_products_collection_url }}/qamis }}" class="flex w-full justify-between py-2">
+            Gilets
+          </a>
+          <a href="{{ routes.all_products_collection_url }}/qamis }}" class="flex w-full justify-between py-2">
+            Pantalons
+          </a>
+          <a href="{{ routes.all_products_collection_url }}/qamis }}" class="flex w-full justify-between py-2">
+            Manteaux & Capes
+          </a>
+          <a href="{{ routes.all_products_collection_url }}/qamis }}" class="flex w-full justify-between py-2">
+            Accessoires
+          </a>
+          <a href="{{ routes.all_products_collection_url }}/qamis }}" class="flex w-full justify-between py-2">
+            Collections Moon
+          </a>
+        </div>
+      </div>
+
+      {% for link in linklists['main-menu'].links %}
+        <a href="{{ link.url }}" class="flex w-full justify-between py-2">
+          {{ link.title -}}
+          {% render 'icon-arrow-right-simple' %}
+        </a>
+      {% endfor %}
+    </nav>
+
+    <footer class="inline-flex h-full w-full flex-col justify-end gap-6">
+      <hr>
+
+      <nav class="flex w-full flex-col">
+        {% for link in linklists.policies.links %}
+          <a href="{{ link.url }}" class="flex w-full justify-between py-1">
+            {{ link.title -}}
+          </a>
+        {% endfor %}
+      </nav>
+
+      <div class="flex flex-row gap-4">
+        {% render 'currency-select' %}
+        {% render 'localization-select' %}
+      </div>
+
+      <div class="flex w-full justify-between">
+        <p x-data="{ year: `©LCAID ${new Date().getFullYear()}` }" x-text="year"></p>
+        <a href="https://fichu.studio" target="_blank">(by) fichustudio</a>
+      </div>
+    </footer>
+  </div>
+</div>

@@ -1,0 +1,107 @@
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "presentation_who",
+      "label": "Qui",
+      "default": "Sarah R. Créatrice LCAID"
+    },
+    {
+      "type": "text",
+      "id": "presentation_text",
+      "label": "Présentation",
+      "default": "Lorem ipsum dolor sit amet consectetur. Enim nam augue id quis dolor sociis turpis aliquet. Ac phasellus pellentesque eu tortor vitae faucibus massa egestas."
+    }
+  ]
+}
+{% endschema %}
+
+<footer
+  class="mt-8 flex h-screen w-full flex-col justify-between bg-neutral-black py-8 text-white gutter-px-1"
+>
+  <nav class="mt-8 flex w-full flex-row justify-between">
+    <p>Toute la collection</p>
+    <p>Qamis</p>
+    <p>Chemises</p>
+    <p>Gilets</p>
+    <p>Pantalons</p>
+    <p>Manteaux & Capes</p>
+  </nav>
+
+  <div class="mx-auto max-w-[50%]">{% render 'logo-svg' %}</div>
+
+  <section class="flex flex-col gap-8 lg:gap-10">
+    <article class="flex w-full flex-col lg:flex-row lg:justify-between">
+      <div class="flex flex-col gap-4 span-max-w-4">
+        <p>
+          {{ section.settings.presentation_text }}
+        </p>
+        <p class="italic">{{ section.settings.presentation_who }}</p>
+      </div>
+
+      <nav class="flex flex-col gap-8 lg:flex-row lg:gap-16">
+        <div class="flex flex-col gap-4">
+          <h5 class="font-medium">{{ 'footer.links.policies' | t }}</h5>
+
+          <ul class="flex flex-col gap-2">
+            {% for link in linklists.policies.links %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title -}}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <h5 class="font-medium">{{ 'footer.links.about' | t }}</h5>
+
+          <ul class="flex flex-col gap-2">
+            <li>
+              <a href="/">La maison</a>
+            </li>
+            <li>
+              <a href="/">Nous contacter</a>
+            </li>
+            <li>
+              <a href="/">(Store)</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <h5 class="font-medium">{{ 'footer.links.socials' | t }}</h5>
+
+          <ul class="flex flex-col gap-2">
+            <li>
+              <a href="/">Instagram</a>
+            </li>
+            <li>
+              <a href="/">TikTok</a>
+            </li>
+            <li>
+              <a href="/">X / Twitter</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </article>
+
+    <article class="flex w-full flex-col gap-4">
+      <div class="flex w-full flex-col lg:flex-row lg:justify-between">
+        <p>La livraison</p>
+
+        <div class="flex flex-row gap-2">
+          {% render 'currency-select' %}
+          {% render 'localization-select' %}
+        </div>
+      </div>
+
+      <div class="flex w-full flex-col text-neutral-light-grey lg:flex-row lg:justify-between">
+        <p x-data="{ year: `©LCAID ${new Date().getFullYear()}` }" x-text="year"></p>
+        <a href="https://fichu.studio" target="_blank">(by) fichustudio</a>
+      </div>
+    </article>
+  </section>
+</footer>

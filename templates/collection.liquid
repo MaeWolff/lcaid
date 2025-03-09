@@ -1,0 +1,56 @@
+<section
+  class="mt-[calc(var(--header-height)_+_1rem)] flex w-full flex-col gap-8"
+  x-data="
+      { viewBy : 'grid', sortBy: 'manual',
+        category: window.location.pathname.split('/').pop(),
+      availableCount: {{ collection.products | where: 'tags', category | where: 'available', true | size }},
+    }
+  "
+>
+  <article
+    class="sticky top-0 z-40 grid w-full grid-cols-3 border border-b-neutral-light-grey border-t-neutral-light-grey bg-white py-4 gutter-px-1"
+  >
+    <p
+      class="text-neutral-mid-grey"
+      x-text="window.categoryTranslations[category] || category.charAt(0).toUpperCase() + category.slice(1)"
+    ></p>
+
+    <p class="justify-self-center text-neutral-mid-grey">
+      <span x-text="availableCount"></span>
+      {{ 'products.filters.counts' | t }}
+    </p>
+
+    <div class="flex flex-row gap-8 justify-self-end border-l border-neutral-light-grey px-8">
+      {% assign filters_button_text = 'products.filters.title' | t %}
+      {% render 'drawer',
+        button_text: filters_button_text,
+        button_classes: '',
+        title: filters_button_text,
+        content: 'TODO'
+      %}
+
+      <p>
+        {{ 'products.filters.viewBy' | t }}
+        <select x-model="viewBy" class="bg-transparent">
+          <option value="grid">4</option>
+          <option value="list">2</option>
+        </select>
+      </p>
+    </div>
+  </article>
+
+  <article
+    class="grid w-full grid-cols-2 gap-x-6 gap-y-10 gutter-px-1 md:grid-cols-3 lg:grid-cols-4"
+    x-bind:class="{ 'grid-cols-1 lg:grid-cols-2': viewBy == 'list', 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4': viewBy == 'grid' }"
+  >
+    {% for product in collection.products | sort_by: sortBy %}
+      {% render 'collection-product-card', product: product %}
+    {% endfor %}
+  </article>
+</section>
+
+<script>
+  window.categoryTranslations = {
+    all: "{{ 'products.categories.all' | t }}",
+  };
+</script>
