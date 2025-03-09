@@ -43,6 +43,19 @@
       "all": "Tous les produits"
     }
   },
+  "contact": {
+    "title": "Contactez-nous",
+    "description": "Chez LCAID, il est possible de créer une tenue spécialement pour vous !",
+    "form": {
+      "name": "Nom",
+      "email": "Email",
+      "message": "Message",
+      "send": "Envoyer"
+    }
+  },
+  "buttons": {
+    "discover": "Découvrir le produit"
+  },
   "footer": {
     "links": {
       "policies": "Politiques",

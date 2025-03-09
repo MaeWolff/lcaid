@@ -43,6 +43,19 @@
       "all": "All products"
     }
   },
+  "contact": {
+    "title": "Contact us",
+    "description": "At LCAID, it is possible to create a special outfit just for you!",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "send": "Send"
+    }
+  },
+  "buttons": {
+    "discover": "Discover product"
+  },
   "footer": {
     "links": {
       "policies": "Policies",
