@@ -1,0 +1,28 @@
+{% schema %}
+{
+  "name": "1. Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Chez LCAÏD, il est possible de créer une tenue spécialement pour vous ! Un mariage en vue ou un événement festif prévu ?"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sous titre",
+      "default": "Nous créons à partir de zéro un modèle qui vous convient et s’inspire de votre culture tout en le modernisant.."
+    }
+  ]
+}
+{% endschema %}
+
+<section class="relative flex h-screen w-full flex-col items-center justify-center gap-4 font-medium margin-px-1">
+  <h1 class="text-center md:max-w-[48ch]">{{ section.settings.title }}</h1>
+  <h2 class="text-center md:max-w-[48ch]">{{ section.settings.subtitle }}</h2>
+
+  <div class="absolute bottom-0 w-screen">
+    {% render 'logo-svg' %}
+  </div>
+</section>

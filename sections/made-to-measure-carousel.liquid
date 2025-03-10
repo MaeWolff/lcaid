@@ -1,0 +1,107 @@
+{% schema %}
+{
+  "name": "2. Carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "discount",
+      "label": "Réduction",
+      "default": "10% de réduction sur la première commande"
+    },
+    {
+      "type": "text",
+      "id": "text_1",
+      "label": "Texte 1",
+      "default": "LCAÏD crée à partir de zéro un modèle qui vous convient et s’inspire de votre culture tout en le modernisant. <br />Le délai de fabrication est d’un mois et vingts jours."
+    },
+    {
+      "type": "text",
+      "id": "text_2",
+      "label": "Texte 2",
+      "default": "Le service demande plusieurs étapes pour procéder au produit final. Il est important de les suivre pour un bon déroulement lors de la production. Après avoir rempli le formulaire ci-dessous."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="flex min-h-screen w-screen flex-col gap-8 py-16 margin-px-1 lg:grid lg:grid-cols-2">
+  <article class="flex h-full flex-col items-center justify-center gap-8 text-center lg:px-10">
+    <p class="w-fit bg-neutral-light-grey font-medium">{{ section.settings.discount }}</p>
+    <p>{{ section.settings.text_1 }}</p>
+    <p>{{ section.settings.text_2 }}</p>
+    <a
+      href="#contact-form"
+      class="w-full max-w-[300px] cursor-pointer bg-neutral-black py-3 text-center text-white hover:bg-neutral-black/80 disabled:bg-neutral-mid-grey"
+    >
+      Accéder au formulaire
+    </a>
+  </article>
+
+  <article class="flex h-full w-full flex-col gap-4">
+    <img
+      id="main-image"
+      src="{{ section.settings.image_1 | image_url }}"
+      alt="Image principale"
+      class="h-full w-full object-cover"
+      width="100%"
+      height="100%"
+    >
+
+    <div class="flex flex-row items-start gap-4">
+      {% for i in (1..5) %}
+        {% assign image_key = 'image_' | append: i %}
+        {% if section.settings[image_key] %}
+          <img
+            src="{{ section.settings[image_key] | image_url }}"
+            alt="Miniature {{ i }}"
+            class="thumbnail h-[50px] w-[50px] cursor-pointer object-cover {%if forloop.index0 == 0 %}opacity-100{% else %}opacity-50{% endif %}"
+            data-large-image="{{ section.settings[image_key] | image_url }}"
+            width="100%"
+            height="100%"
+          >
+        {% endif %}
+      {% endfor %}
+    </div>
+  </article>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const sections = document.querySelectorAll('section');
+
+    sections.forEach((section) => {
+      const mainImage = section.querySelector('img[id^="main-image"]');
+      const thumbnails = section.querySelectorAll('img.thumbnail');
+
+      thumbnails.forEach((thumbnail) => {
+        thumbnail.addEventListener('click', function () {
+          const newImageSrc = this.getAttribute('data-large-image');
+          mainImage.setAttribute('src', newImageSrc);
+
+          thumbnails.forEach((thumb) => {
+            thumb.classList.remove('opacity-100');
+            thumb.classList.add('opacity-50');
+          });
+
+          this.classList.remove('opacity-50');
+          this.classList.add('opacity-100');
+        });
+      });
+    });
+  });
+</script>

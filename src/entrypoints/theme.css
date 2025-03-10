@@ -11,6 +11,10 @@
   --progress: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /*  Loading button state */
 
 .btn-loading {
