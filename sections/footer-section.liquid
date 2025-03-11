@@ -19,7 +19,7 @@
 {% endschema %}
 
 <footer
-  class="mt-8 flex h-screen w-full flex-col justify-between bg-neutral-black py-8 text-white margin-px-1"
+  class="mt-8 flex min-h-screen w-full flex-col justify-between gap-24 bg-neutral-black py-8 text-white margin-px-1 lg:gap-0"
 >
   <nav class="mt-8 flex w-full flex-row justify-between">
     <p>Toute la collection</p>
@@ -31,16 +31,16 @@
 
   <div class="mx-auto max-w-[50%]">{% render 'logo-svg' %}</div>
 
-  <section class="flex flex-col gap-8 lg:gap-10">
-    <article class="flex w-full flex-col lg:flex-row lg:justify-between">
-      <div class="flex flex-col gap-4 span-max-w-4">
+  <section class="flex flex-col gap-10">
+    <article class="flex w-full flex-col gap-8 lg:flex-row lg:justify-between">
+      <div class="span-max-6 flex flex-col gap-4 lg:span-max-w-4">
         <p>
           {{ section.settings.presentation_text }}
         </p>
         <p class="italic">{{ section.settings.presentation_who }}</p>
       </div>
 
-      <nav class="flex flex-col gap-8 lg:flex-row lg:gap-16">
+      <nav class="flex flex-wrap gap-8 lg:flex-row lg:gap-16">
         <div class="flex flex-col gap-4">
           <h5 class="font-medium">{{ 'footer.links.policies' | t }}</h5>
 
@@ -97,7 +97,7 @@
         </div>
       </div>
 
-      <div class="flex w-full flex-col text-neutral-light-grey lg:flex-row lg:justify-between">
+      <div class="flex w-full flex-row justify-between gap-2 text-neutral-light-grey">
         <p x-data="{ year: `©LCAID ${new Date().getFullYear()}` }" x-text="year"></p>
         <a href="https://fichu.studio" target="_blank">(by) fichustudio</a>
       </div>
