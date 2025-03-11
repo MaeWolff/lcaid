@@ -57,15 +57,11 @@
           <h5 class="font-medium">{{ 'footer.links.about' | t }}</h5>
 
           <ul class="flex flex-col gap-2">
-            <li>
-              <a href="/">La maison</a>
-            </li>
-            <li>
-              <a href="/">Nous contacter</a>
-            </li>
-            <li>
-              <a href="/">(Store)</a>
-            </li>
+            {% for link in linklists.about.links %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title -}}</a>
+              </li>
+            {% endfor %}
           </ul>
         </div>
 
@@ -73,15 +69,11 @@
           <h5 class="font-medium">{{ 'footer.links.socials' | t }}</h5>
 
           <ul class="flex flex-col gap-2">
-            <li>
-              <a href="/">Instagram</a>
-            </li>
-            <li>
-              <a href="/">TikTok</a>
-            </li>
-            <li>
-              <a href="/">X / Twitter</a>
-            </li>
+            {% for link in linklists.socials.links %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title -}}</a>
+              </li>
+            {% endfor %}
           </ul>
         </div>
       </nav>

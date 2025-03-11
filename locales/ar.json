@@ -54,7 +54,8 @@
     }
   },
   "buttons": {
-    "discover": "اكتشف المنتج"
+    "discover": "اكتشف المنتج",
+    "discover_collection": "اكتشف المجموعة"
   },
   "footer": {
     "links": {

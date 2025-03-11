@@ -54,7 +54,8 @@
     }
   },
   "buttons": {
-    "discover": "Discover product"
+    "discover": "Discover product",
+    "discover_collection": "Discover collection"
   },
   "footer": {
     "links": {

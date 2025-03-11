@@ -1,0 +1,76 @@
+{% schema %}
+{
+  "name": "Video Hero",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video de fond"
+    },
+    {
+      "type": "collection",
+      "id": "selected_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    }
+  ]
+}
+{% endschema %}
+
+{% assign collection_handle = section.settings.selected_collection %}
+{% assign selected_collection = collections[collection_handle] %}
+
+<section
+  class="relative h-[95vh] w-screen bg-cover bg-center"
+>
+  <video id="video-full" loop muted playsinline class="absolute left-0 top-0 z-0 h-full w-full object-cover">
+    <source src="{{ section.settings.video.sources[1].url}}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <article class="absolute bottom-11 z-10 flex flex-col gap-[18px] text-white gutter-pl-1 lg:span-pl-1-wider">
+    <div class="flex flex-col gap-[6px]">
+      <h1 class="text-[18px] font-medium uppercase">{{ selected_collection.title }}</h1>
+      <p class="max-w-[25ch]">
+        {{ section.settings.description | escape }}
+      </p>
+    </div>
+    <a
+      class="w-fit cursor-pointer bg-white px-2 py-1 text-neutral-black transition-all hover:opacity-80"
+      href="{{ selected_collection.url }}"
+    >
+      {{ 'buttons.discover_collection' | t }}
+    </a>
+  </article>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const videoElement = document.getElementById('video-full');
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              videoElement.play();
+            } else {
+              videoElement.pause();
+            }
+          });
+        },
+        {
+          threshold: 0.5,
+        },
+      );
+
+      observer.observe(videoElement);
+    } else {
+      videoElement.play();
+    }
+  });
+</script>
