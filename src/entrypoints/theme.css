@@ -15,6 +15,28 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Link underline effect */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 0;
+  background-color: currentColor;
+  opacity: 0.5;
+  transition: width 0.3s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
 /*  Loading button state */
 
 .btn-loading {

@@ -1,96 +1,76 @@
-<div x-data="{ openIndex: null }" class="border border-neutral-light-grey">
+<div x-data="{ openIndex: null }" class="divide-y divide-neutral-light-grey border border-neutral-light-grey">
+  <!-- Section 1 : Description -->
   <div>
-    <div>
-      <button
-        type="button"
-        class="w-full border-b border-neutral-light-grey p-4 text-left focus:outline-none"
-        @click="openIndex === 0 ? openIndex = null : openIndex = 0"
-      >
-        <div class="flex items-center justify-between">
-          <p class="font-medium">{{ 'products.accordions.descrition' | t }}</p>
-          <span
-            :class="{ 'text-gray-600': openIndex === 0, 'text-gray-400': openIndex !== 0 }"
-            class="transform transition-transform"
-            :style="{ transform: openIndex === 0 ? 'rotate(45deg)' : 'rotate(0deg)' }"
-          >
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4.99688 0C5.21386 0 5.39323 0.161155 5.42164 0.370346L5.42558 0.428503L5.42626 4.57161H9.57106C9.80775 4.57161 9.99965 4.7635 9.99965 5.0002C9.99965 5.21718 9.83838 5.3965 9.62923 5.4249L9.57106 5.42879H5.42626L5.42741 9.5713C5.42746 9.80799 5.23563 10 4.99893 10C4.78195 10 4.60257 9.83885 4.57417 9.62964L4.57023 9.57147L4.56909 5.42879H0.426635C0.189929 5.42879 -0.00195312 5.2369 -0.00195312 5.0002C-0.00195312 4.78322 0.159282 4.6039 0.368479 4.5755L0.426635 4.57161H4.56909L4.5684 0.428674C4.56834 0.191973 4.76018 0 4.99688 0Z" fill="currentColor"/>
-            </svg>
-          </span>
-        </div>
-      </button>
-      <div
-        x-ref="container0"
-        class="transition-max-height overflow-hidden text-neutral-dark-grey duration-500 ease-in-out"
-        :style="openIndex === 0 ? 'max-height: ' + $refs.container0.scrollHeight + 'px' : 'max-height: 0px'"
-        x-cloak
-      >
-        <div class="flex flex-col gap-2">{{ product.metafields.custom.details | metafield_tag }}</div>
-      </div>
+    <button
+      type="button"
+      class="flex w-full items-center justify-between p-4 text-left focus:outline-none"
+      @click="openIndex === 0 ? openIndex = null : openIndex = 0"
+    >
+      <p class="font-medium">{{ 'products.accordions.descrition' | t }}</p>
+      <span :class="openIndex === 0 ? 'rotate-180' : 'rotate-0'" class="transition-transform duration-300">
+        <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1.5979L5 5.5979L9 1.5979" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </button>
+
+    <div
+      x-ref="container0"
+      class="grid transition-[grid-template-rows] duration-300 ease-in-out"
+      :class="openIndex === 0 ? 'grid-rows-[1fr] pb-4' : 'grid-rows-[0fr]'"
+      style="overflow: hidden;"
+    >
+      <div class="overflow-hidden px-4">{{ product.description }}</div>
     </div>
+  </div>
 
-    <div>
-      <button
-        type="button"
-        class="w-full border-b border-neutral-light-grey p-4 text-left focus:outline-none"
-        @click="openIndex === 1 ? openIndex = null : openIndex = 1"
-      >
-        <div class="flex items-center justify-between">
-          <p class="font-medium">{{ 'products.accordions.cleaning' | t }}</p>
-          <span
-            :class="{ 'text-gray-600': openIndex === 1, 'text-gray-400': openIndex !== 1 }"
-            class="transform transition-transform"
-            :style="{ transform: openIndex === 1 ? 'rotate(45deg)' : 'rotate(0deg)' }"
-          >
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4.99688 0C5.21386 0 5.39323 0.161155 5.42164 0.370346L5.42558 0.428503L5.42626 4.57161H9.57106C9.80775 4.57161 9.99965 4.7635 9.99965 5.0002C9.99965 5.21718 9.83838 5.3965 9.62923 5.4249L9.57106 5.42879H5.42626L5.42741 9.5713C5.42746 9.80799 5.23563 10 4.99893 10C4.78195 10 4.60257 9.83885 4.57417 9.62964L4.57023 9.57147L4.56909 5.42879H0.426635C0.189929 5.42879 -0.00195312 5.2369 -0.00195312 5.0002C-0.00195312 4.78322 0.159282 4.6039 0.368479 4.5755L0.426635 4.57161H4.56909L4.5684 0.428674C4.56834 0.191973 4.76018 0 4.99688 0Z" fill="currentColor"/>
-            </svg>
-          </span>
-        </div>
-      </button>
-      <div
-        x-ref="container1"
-        class="transition-max-height overflow-hidden text-neutral-dark-grey duration-500 ease-in-out"
-        :style="openIndex === 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : 'max-height: 0px'"
-        x-cloak
-      >
-        <div class="flex flex-col gap-2">{{ product.metafields.custom.care | metafield_tag }}</div>
-      </div>
+  <!-- Section 2 : Entretien -->
+  <div>
+    <button
+      type="button"
+      class="flex w-full items-center justify-between p-4 text-left focus:outline-none"
+      @click="openIndex === 1 ? openIndex = null : openIndex = 1"
+    >
+      <p class="font-medium">{{ 'products.accordions.cleaning' | t }}</p>
+      <span :class="openIndex === 1 ? 'rotate-180' : 'rotate-0'" class="transition-transform duration-300">
+        <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1.5979L5 5.5979L9 1.5979" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </button>
+
+    <div
+      x-ref="container1"
+      class="grid transition-[grid-template-rows] duration-300 ease-in-out"
+      :class="openIndex === 1 ? 'grid-rows-[1fr] pb-4' : 'grid-rows-[0fr]'"
+      style="overflow: hidden;"
+    >
+      <div class="overflow-hidden px-4">{{ product.metafields.custom.care | metafield_tag }}</div>
     </div>
+  </div>
 
-    <div>
-      <button
-        type="button"
-        class="w-full border-b border-neutral-light-grey p-4 text-left focus:outline-none"
-        @click="openIndex === 2 ? openIndex = null : openIndex = 2"
-      >
-        <div class="flex items-center justify-between">
-          <p class="font-medium">{{ 'products.accordions.shipping' | t }}</p>
-          <span
-            :class="{ 'text-gray-600': openIndex === 2, 'text-gray-400': openIndex !== 2 }"
-            class="transform transition-transform"
-            :style="{ transform: openIndex === 2 ? 'rotate(45deg)' : 'rotate(0deg)' }"
-          >
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4.99688 0C5.21386 0 5.39323 0.161155 5.42164 0.370346L5.42558 0.428503L5.42626 4.57161H9.57106C9.80775 4.57161 9.99965 4.7635 9.99965 5.0002C9.99965 5.21718 9.83838 5.3965 9.62923 5.4249L9.57106 5.42879H5.42626L5.42741 9.5713C5.42746 9.80799 5.23563 10 4.99893 10C4.78195 10 4.60257 9.83885 4.57417 9.62964L4.57023 9.57147L4.56909 5.42879H0.426635C0.189929 5.42879 -0.00195312 5.2369 -0.00195312 5.0002C-0.00195312 4.78322 0.159282 4.6039 0.368479 4.5755L0.426635 4.57161H4.56909L4.5684 0.428674C4.56834 0.191973 4.76018 0 4.99688 0Z" fill="currentColor"/>
-            </svg>
-          </span>
-        </div>
-      </button>
-      <div
-        x-ref="container2"
-        class="transition-max-height overflow-hidden text-neutral-dark-grey duration-500 ease-in-out"
-        :style="openIndex === 2 ? 'max-height: ' + $refs.container2.scrollHeight + 'px' : 'max-height: 0px'"
-        x-cloak
-      >
-        <div class="flex flex-col gap-2">
-          {{ product.metafields.custom.size | metafield_tag }}
+  <!-- Section 3 : Expédition -->
+  <div>
+    <button
+      type="button"
+      class="flex w-full items-center justify-between p-4 text-left focus:outline-none"
+      @click="openIndex === 2 ? openIndex = null : openIndex = 2"
+    >
+      <p class="font-medium">{{ 'products.accordions.shipping' | t }}</p>
+      <span :class="openIndex === 2 ? 'rotate-180' : 'rotate-0'" class="transition-transform duration-300">
+        <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1.5979L5 5.5979L9 1.5979" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </button>
 
-          {% if product.metafields.custom.sizing_guide %}
-            {% comment %} {% render 'product-page-sizing-guide-modal', product: product %} {% endcomment %}
-          {% endif %}
-        </div>
-      </div>
+    <div
+      x-ref="container2"
+      class="grid transition-[grid-template-rows] duration-300 ease-in-out"
+      :class="openIndex === 2 ? 'grid-rows-[1fr] pb-4' : 'grid-rows-[0fr]'"
+      style="overflow: hidden;"
+    >
+      <div class="overflow-hidden px-4">{{ product.metafields.custom.shipping | metafield_tag }}</div>
     </div>
   </div>
 </div>

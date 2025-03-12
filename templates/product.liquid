@@ -4,14 +4,14 @@
 <div class="relative mt-[calc(var(--header-height)_+_1rem)] grid w-full grid-cols-1 gap-4 margin-px-1 lg:grid-cols-[1fr_0.7fr] lg:gap-16">
   <section class="grid grid-cols-1 bg-red-200">
     <img
-      class="h-full w-full bg-neutral-light-grey object-contain"
+      class="aspect-square h-full w-full bg-neutral-light-grey object-cover object-top"
       src="{{ product.images[0]  | image_url }}"
       alt="{{ featured_image.alt | escape }}"
       width="100%"
       height="100%"
     >
     <img
-      class="h-full w-full bg-neutral-light-grey object-contain"
+      class="aspect-square h-full w-full bg-neutral-light-grey object-cover object-top"
       src="{{ product.images[1]  | image_url }}"
       alt="{{ featured_image.alt | escape }}"
       width="100%"

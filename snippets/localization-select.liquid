@@ -1,5 +1,10 @@
 {% form 'localization' %}
-  <select name="language_code" id="language-selector" @change="event.target.form.submit()" class="bg-transparent">
+  <select
+    name="language_code"
+    id="language-selector"
+    @change="event.target.form.submit()"
+    class="cursor-pointer bg-transparent"
+  >
     {% for language in localization.available_languages %}
       <option
         value="{{ language.iso_code }}"

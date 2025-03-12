@@ -47,7 +47,7 @@
           <ul class="flex flex-col gap-2">
             {% for link in linklists.policies.links %}
               <li>
-                <a href="{{ link.url }}">{{ link.title -}}</a>
+                <a class="link-underline" href="{{ link.url }}">{{ link.title -}}</a>
               </li>
             {% endfor %}
           </ul>
@@ -59,7 +59,7 @@
           <ul class="flex flex-col gap-2">
             {% for link in linklists.about.links %}
               <li>
-                <a href="{{ link.url }}">{{ link.title -}}</a>
+                <a class="link-underline" href="{{ link.url }}">{{ link.title -}}</a>
               </li>
             {% endfor %}
           </ul>
@@ -71,7 +71,7 @@
           <ul class="flex flex-col gap-2">
             {% for link in linklists.socials.links %}
               <li>
-                <a href="{{ link.url }}">{{ link.title -}}</a>
+                <a class="link-underline" href="{{ link.url }}">{{ link.title -}}</a>
               </li>
             {% endfor %}
           </ul>
@@ -91,7 +91,7 @@
 
       <div class="flex w-full flex-row justify-between gap-2 text-neutral-light-grey">
         <p x-data="{ year: `©LCAID ${new Date().getFullYear()}` }" x-text="year"></p>
-        <a href="https://fichu.studio" target="_blank">(by) fichustudio</a>
+        <a class="link-underline" href="https://fichu.studio" target="_blank">(by) fichustudio</a>
       </div>
     </article>
   </section>

@@ -25,17 +25,17 @@
 {% assign selected_collection = collections[collection_handle] %}
 
 <section
-  class="relative h-[95vh] w-screen bg-cover bg-center"
+  class="relative h-[95vh] w-screen bg-black bg-cover bg-center"
 >
-  <video id="video-full" loop muted playsinline class="absolute left-0 top-0 z-0 h-full w-full object-cover">
+  <video id="video-full" loop muted playsinline class="absolute left-0 top-0 z-0 h-full w-full object-cover opacity-80">
     <source src="{{ section.settings.video.sources[1].url}}" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
-  <article class="absolute bottom-11 z-10 flex flex-col gap-[18px] text-white gutter-pl-1 lg:span-pl-1-wider">
+  <article class="absolute bottom-11 z-10 flex w-full flex-col items-center justify-center gap-[18px] text-white ">
     <div class="flex flex-col gap-[6px]">
-      <h1 class="text-[18px] font-medium uppercase">{{ selected_collection.title }}</h1>
-      <p class="max-w-[25ch]">
+      <h1 class="text-center text-[18px] font-medium uppercase">{{ selected_collection.title }}</h1>
+      <p class="text-center">
         {{ section.settings.description | escape }}
       </p>
     </div>

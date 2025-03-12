@@ -55,7 +55,8 @@
   },
   "buttons": {
     "discover": "Discover product",
-    "discover_collection": "Discover collection"
+    "discover_collection": "Discover collection",
+    "apply_selection": "Apply selection"
   },
   "footer": {
     "links": {
