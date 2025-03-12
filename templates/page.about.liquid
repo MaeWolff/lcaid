@@ -1,5 +1,9 @@
-<section
-  class="mt-[calc(var(--header-height)_+_1rem)] flex w-full flex-col gap-8 margin-px-1"
->
-  <h1>About page</h1>
-</section>
+{% render 'vite-tag' with 'js/about.js' %}
+
+<div class="relative w-full">
+  {% section 'about-story-section' %}
+  {% section 'about-inspiration-section' %}
+  {% section 'about-artisanat-section' %}
+
+  <p class="fixed bottom-8 left-0 hidden margin-px-1 lg:block"><span id="panel-counter">1</span> | <span>3</span></p>
+</div>

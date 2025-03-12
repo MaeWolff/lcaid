@@ -1,0 +1,44 @@
+{% schema %}
+{
+  "name": "2. Inspiration Section",
+  "class": "w-full",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texte"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "image_description",
+      "label": "Image description"
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  id="panel"
+  class="flex h-screen w-full flex-col-reverse justify-center gap-8 bg-white pb-12 margin-px-1 lg:h-[90vh] lg:flex-row lg:items-center lg:justify-between lg:pb-0"
+>
+  <header class="flex w-full flex-col items-center justify-center lg:w-1/2">
+    <div class="lg:max-w-[40ch]">{{ section.settings.text }}</div>
+  </header>
+  <div class="flex w-full flex-col items-center justify-center gap-4 lg:h-full lg:w-1/2">
+    <img
+      src="{{ section.settings.image | image_url }}"
+      alt="{{ section.settings.image_description }}"
+      class="aspect-auto h-[300px] w-[200px] object-cover lg:h-[400px] lg:w-[300px]"
+      width="100%"
+      height="100%"
+    >
+    {% if section.settings.description != blank %}
+      <p class="w-fit text-[10px]">{{ section.settings.description }}</p>
+    {% endif %}
+  </div>
+</section>

@@ -7,12 +7,16 @@
   <script src="{{ 'cart-drawer.CDcMY7oF.min.js' | asset_url | split: '?' | first }}" type="module" crossorigin="anonymous"></script>
 {% elsif path == "/src/entrypoints/css/fonts.css" or path == "css/fonts.css" %}
   {{ 'fonts.alJtmM5y.min.css' | asset_url | split: '?' | first | stylesheet_tag: preload: preload_stylesheet }}
+{% elsif path == "/src/entrypoints/js/about.js" or path == "js/about.js" %}
+  <script src="{{ 'about.BZe6_Jzo.min.js' | asset_url | split: '?' | first }}" type="module" crossorigin="anonymous"></script>
+  <link rel="modulepreload" href="{{ 'ScrollTrigger.CKx49QUS.min.js' | asset_url | split: '?' | first }}" crossorigin="anonymous">
 {% elsif path == "/src/entrypoints/js/header.js" or path == "js/header.js" %}
   <script src="{{ 'header.gIfbB6Ee.min.js' | asset_url | split: '?' | first }}" type="module" crossorigin="anonymous"></script>
 {% elsif path == "/src/entrypoints/js/made-to-measure-cards.js" or path == "js/made-to-measure-cards.js" %}
-  <script src="{{ 'made-to-measure-cards.C2lN-hsV.min.js' | asset_url | split: '?' | first }}" type="module" crossorigin="anonymous"></script>
+  <script src="{{ 'made-to-measure-cards.FIN9Sm1D.min.js' | asset_url | split: '?' | first }}" type="module" crossorigin="anonymous"></script>
+  <link rel="modulepreload" href="{{ 'ScrollTrigger.CKx49QUS.min.js' | asset_url | split: '?' | first }}" crossorigin="anonymous">
 {% elsif path == "/src/entrypoints/theme.css" or path == "theme.css" %}
-  {{ 'theme.CARsEnh_.min.css' | asset_url | split: '?' | first | stylesheet_tag: preload: preload_stylesheet }}
+  {{ 'theme.DBqycVp5.min.css' | asset_url | split: '?' | first | stylesheet_tag: preload: preload_stylesheet }}
 {% elsif path == "/src/entrypoints/theme.js" or path == "theme.js" %}
   <script src="{{ 'theme.DasWe9VJ.min.js' | asset_url | split: '?' | first }}" type="module" crossorigin="anonymous"></script>
 {% endif %}
