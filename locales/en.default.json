@@ -56,7 +56,8 @@
   "buttons": {
     "discover": "Discover product",
     "discover_collection": "Discover collection",
-    "apply_selection": "Apply selection"
+    "apply_selection": "Apply selection",
+    "all_clear": "Clear all"
   },
   "footer": {
     "links": {

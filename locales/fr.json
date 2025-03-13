@@ -56,7 +56,8 @@
   "buttons": {
     "discover": "Découvrir le produit",
     "discover_collection": "Découvrir la collection",
-    "apply_selection": "Appliquer la séléction"
+    "apply_selection": "Appliquer la séléction",
+    "all_clear": "Tout effacer"
   },
   "footer": {
     "links": {

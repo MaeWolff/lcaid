@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function updateCartItemCounts(count) {
     document.querySelectorAll('#cart-count').forEach((el) => {
-      el.textContent = `(${count})`;
+      el.textContent = `${count}`;
     });
   }
 

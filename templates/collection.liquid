@@ -21,13 +21,7 @@
     </p>
 
     <div class="flex flex-row gap-8 justify-self-end border-l border-neutral-light-grey px-2 lg:px-8">
-      {% assign filters_button_text = 'products.filters.title' | t %}
-      {% render 'drawer',
-        button_text: filters_button_text,
-        button_classes: '',
-        title: filters_button_text,
-        content: 'TODO'
-      %}
+      {% render 'collection-filters-drawer' %}
 
       <p>
         {{ 'products.filters.viewBy' | t }}

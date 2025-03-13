@@ -1,0 +1,98 @@
+{% assign filters_button_text = 'products.filters.title' | t %}
+
+{% capture filters_drawer_content %}
+<form class="space-y-6 p-4">
+  {%- for filter in collection.filters -%}
+    <details class="border-b border-gray-300 pb-2">
+      <summary class="flex cursor-pointer items-center justify-between font-medium">
+        <span>{{ filter.label }}</span>
+        {%- if filter.active_values.size > 0 -%}
+          <span class="flex h-[14px] w-[14px] items-center justify-center rounded-full bg-neutral-black text-center text-[8px] text-white">
+            {{- filter.active_values.size -}}
+          </span>
+        {%- endif -%}
+
+        
+      </summary>
+
+      <div class="mt-2 space-y-3">
+        {%- if filter.active_values.size > 0 -%}
+          <div class="flex items-center justify-between text-sm text-gray-600">
+            <p>{{ filter.active_values.size }} sélectionné(s)</p>
+            <a href="{{ filter.url_to_remove }}" class="text-red-500 hover:underline">Réinitialiser</a>
+          </div>
+        {%- endif -%}
+
+        {%- case filter.type -%}
+          {%- when 'list' -%}
+            <ul class="grid grid-cols-2 gap-2">
+              {%- for filter_value in filter.values -%}
+                <li x-data="{ isActive: {{ filter_value.active | json }},  isAvailable: {{ filter_value.count == 0 }} }">
+                  <label class="flex cursor-pointer items-center space-x-2" :class="{ 'cursor-not-allowed opacity-50': !isAvailable }">
+                    <input
+                      type="checkbox"
+                      name="{{ filter_value.param_name }}"
+                      value="{{ filter_value.value }}"
+                      id="Filter-{{ filter.param_name }}-{{ forloop.index }}" 
+                      class="form-checkbox h-5 w-5 text-blue-600"
+                      {% if filter_value.active %}
+                        checked
+                      {% endif %}
+                      {% if filter_value.count == 0 and filter_value.active == false %}
+                        disabled class="cursor-not-allowed"
+                      {% endif %}
+                    >
+                      <span :class="{ 'line-through cursor-not-allowed': !isAvailable }">
+                        {{- filter_value.label -}}
+                      </span>
+                  </label>
+                </li>
+              {%- endfor -%} 
+            </ul>
+
+          {%- when 'price_range' -%}
+            <div class="flex items-center space-x-2">
+              <span>{{ cart.currency.symbol }}</span>
+              <input
+                type="number"
+                name="{{ filter.min_value.param_name }}"
+                id="Filter-{{ filter.min_value.param_name }}"
+                value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                placeholder="Min"
+                class="w-24 rounded border border-gray-300 px-2 py-1 focus:ring focus:ring-blue-300"
+              >
+              <span>-</span>
+              <input
+                type="number"
+                name="{{ filter.max_value.param_name }}"
+                id="Filter-{{ filter.max_value.param_name }}"
+                value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                placeholder="Max"
+                class="w-24 rounded border border-gray-300 px-2 py-1 focus:ring focus:ring-blue-300"
+              >
+            </div>
+        {%- endcase -%}
+      </div>
+    </details>
+  {%- endfor -%}
+
+  <div class="flex flex-col gap-4">
+    <button
+      type="submit"
+      class="flex w-full flex-row items-center justify-center bg-neutral-black p-2 text-white hover:bg-neutral-black/80"
+    >
+      {{ 'buttons.apply_selection' | t }}
+    </button>
+    <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="link-underline w-fit">
+      {{- 'buttons.all_clear' | t -}}
+    </a>
+  </div>
+</form>
+{% endcapture %}
+
+{% render 'drawer',
+  button_text: filters_button_text,
+  button_classes: '',
+  title: filters_button_text,
+  content: filters_drawer_content
+%}

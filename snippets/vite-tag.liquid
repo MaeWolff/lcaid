@@ -4,7 +4,7 @@
 {% endcomment %}
 {% assign path = vite-tag | replace: '~/', '../' | replace: '@/', '../' %}
 {% if path == "/src/entrypoints/cart-drawer.js" or path == "cart-drawer.js" %}
-  <script src="{{ 'cart-drawer.CDcMY7oF.min.js' | asset_url | split: '?' | first }}" type="module" crossorigin="anonymous"></script>
+  <script src="{{ 'cart-drawer.D1ID8pZ2.min.js' | asset_url | split: '?' | first }}" type="module" crossorigin="anonymous"></script>
 {% elsif path == "/src/entrypoints/css/fonts.css" or path == "css/fonts.css" %}
   {{ 'fonts.alJtmM5y.min.css' | asset_url | split: '?' | first | stylesheet_tag: preload: preload_stylesheet }}
 {% elsif path == "/src/entrypoints/js/about.js" or path == "js/about.js" %}
@@ -16,7 +16,7 @@
   <script src="{{ 'made-to-measure-cards.FIN9Sm1D.min.js' | asset_url | split: '?' | first }}" type="module" crossorigin="anonymous"></script>
   <link rel="modulepreload" href="{{ 'ScrollTrigger.CKx49QUS.min.js' | asset_url | split: '?' | first }}" crossorigin="anonymous">
 {% elsif path == "/src/entrypoints/theme.css" or path == "theme.css" %}
-  {{ 'theme.Yk4hHBmZ.min.css' | asset_url | split: '?' | first | stylesheet_tag: preload: preload_stylesheet }}
+  {{ 'theme.s6hOb7F1.min.css' | asset_url | split: '?' | first | stylesheet_tag: preload: preload_stylesheet }}
 {% elsif path == "/src/entrypoints/theme.js" or path == "theme.js" %}
   <script src="{{ 'theme.DasWe9VJ.min.js' | asset_url | split: '?' | first }}" type="module" crossorigin="anonymous"></script>
 {% endif %}
