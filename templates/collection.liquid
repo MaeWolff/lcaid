@@ -8,19 +8,19 @@
   "
 >
   <article
-    class="sticky top-0 z-40 grid w-full grid-cols-3 border border-b-neutral-light-grey border-t-neutral-light-grey bg-white py-4 margin-px-1"
+    class="sticky top-0 z-40 flex w-full flex-row items-center justify-between border border-b-neutral-light-grey border-t-neutral-light-grey bg-white py-4 margin-px-1 lg:grid lg:grid-cols-3"
   >
     <p
       class="text-neutral-mid-grey"
       x-text="window.categoryTranslations[category] || category.charAt(0).toUpperCase() + category.slice(1)"
     ></p>
 
-    <p class="justify-self-center text-neutral-mid-grey">
+    <p class="hidden justify-self-center text-neutral-mid-grey lg:block">
       <span x-text="availableCount"></span>
       {{ 'products.filters.counts' | t }}
     </p>
 
-    <div class="flex flex-row gap-8 justify-self-end border-l border-neutral-light-grey px-8">
+    <div class="flex flex-row gap-8 justify-self-end border-l border-neutral-light-grey px-2 lg:px-8">
       {% assign filters_button_text = 'products.filters.title' | t %}
       {% render 'drawer',
         button_text: filters_button_text,

@@ -2,7 +2,14 @@
 {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
 
 <div class="relative mt-[calc(var(--header-height)_+_1rem)] grid w-full grid-cols-1 gap-4 margin-px-1 lg:grid-cols-[1fr_0.7fr] lg:gap-16">
-  <section class="grid grid-cols-1 bg-red-200">
+  <section id="product-images" class="relative grid grid-cols-1">
+    <div
+      id="sticky-text"
+      class="fixed bottom-10 left-1/4 -translate-x-1/4 bg-white p-4 opacity-100 shadow-lg transition-opacity duration-300"
+    >
+      Complete the look
+    </div>
+
     <img
       class="aspect-square h-full w-full bg-neutral-light-grey object-cover object-top"
       src="{{ product.images[0]  | image_url }}"
@@ -26,3 +33,23 @@
 </div>
 
 {% render 'product-page-complete-the-look' %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const section = document.getElementById('product-images');
+    const text = document.getElementById('sticky-text');
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          text.classList.add('block'); // Affiche le texte
+        } else {
+          text.classList.remove('block'); // Cache le texte
+        }
+      },
+      { root: null, threshold: 0.1 }, // Déclenche quand 10% de la section est visible
+    );
+
+    observer.observe(section);
+  });
+</script>

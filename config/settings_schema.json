@@ -28,18 +28,9 @@
     "name": "À modifier",
     "settings": [
       {
-        "type": "header",
-        "content": "Associatif"
-      },
-      {
-        "type": "textarea",
-        "id": "who_benefits",
-        "label": "Nos profits"
-      },
-      {
-        "type": "url",
-        "id": "who_link",
-        "label": "Lien de l'asso"
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Icone du site"
       },
       {
         "type": "header",
@@ -80,18 +71,6 @@
         "id": "reassurance_text_3",
         "label": "Description",
         "default": "Eget ut nullam adipiscing vitae tortor nec odio curabitur"
-      },
-      {
-        "type": "text",
-        "id": "reassurance_title_4",
-        "label": "Titre",
-        "default": "A remplir"
-      },
-      {
-        "type": "textarea",
-        "id": "reassurance_text_4",
-        "label": "Description",
-        "default": "Eget ut nullam adipiscing vitae tortor nec. Odio curabitur cras ultrices curabitur turpis."
       }
     ]
   }

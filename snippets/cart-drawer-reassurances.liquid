@@ -1,22 +1,19 @@
 <div
   x-data="createCarousel()"
   x-init="init()"
-  class="relative h-[112px] w-full overflow-x-hidden border-y border-neutral-light-grey"
+  class="relative h-[112px] w-full overflow-x-hidden"
 >
   <div
     class="flex transition-transform duration-300"
     :style="{ transform: `translateX(-${activeIndex * 100}%)` }"
   >
     <div class="flex w-full flex-shrink-0 flex-col gap-1 py-4 text-center text-xs">
-      <h4 class="font-medium">{{ settings.reassurance_title_1 }}</h4>
       <p>{{ settings.reassurance_text_1 }}</p>
     </div>
     <div class="flex w-full flex-shrink-0 flex-col gap-1 py-4 text-center text-xs">
-      <h4 class="font-medium">{{ settings.reassurance_title_2 }}</h4>
       <p>{{ settings.reassurance_text_2 }}</p>
     </div>
     <div class="flex w-full flex-shrink-0 flex-col gap-1 py-4 text-center text-xs">
-      <h4 class="font-medium">{{ settings.reassurance_title_3 }}</h4>
       <p>{{ settings.reassurance_text_3 }}</p>
     </div>
   </div>
@@ -25,7 +22,7 @@
     <template x-for="(slide, index) in slides" :key="index">
       <button
         @click="goTo(index)"
-        class="h-[2px] w-6"
+        class="h-[6px] w-[6px] rounded-full"
         :class="index === activeIndex ? 'bg-neutral-mid-grey' : 'bg-neutral-light-grey'"
       ></button>
     </template>

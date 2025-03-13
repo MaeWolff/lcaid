@@ -124,10 +124,10 @@
           <a href="{{ routes.all_products_collection_url }}/qamis }}" class="flex w-full justify-between py-2">
             Manteaux & Capes
           </a>
-          <a href="{{ routes.all_products_collection_url }}/qamis }}" class="flex w-full justify-between py-2">
+          <a href="{{ routes.all_products_collection_url }}/accessoires }}" class="flex w-full justify-between py-2">
             Accessoires
           </a>
-          <a href="{{ routes.all_products_collection_url }}/qamis }}" class="flex w-full justify-between py-2">
+          <a href="{{ routes.collections_url }}/collection-moon" class="flex w-full justify-between py-2">
             Collections Moon
           </a>
         </div>
@@ -144,9 +144,9 @@
     <footer class="inline-flex h-full w-full flex-col justify-end gap-6">
       <hr>
 
-      <nav class="flex w-full flex-col">
+      <nav class="flex w-full flex-col gap-2">
         {% for link in linklists.policies.links %}
-          <a href="{{ link.url }}" class="flex w-full justify-between py-1">
+          <a href="{{ link.url }}" class="link-underline w-fit">
             {{ link.title -}}
           </a>
         {% endfor %}
@@ -159,7 +159,7 @@
 
       <div class="flex w-full justify-between">
         <p x-data="{ year: `©LCAID ${new Date().getFullYear()}` }" x-text="year"></p>
-        <a href="https://fichu.studio" target="_blank">(by) fichustudio</a>
+        <a href="https://fichu.studio" target="_blank" class="link-underline">(by) fichustudio</a>
       </div>
     </footer>
   </div>
