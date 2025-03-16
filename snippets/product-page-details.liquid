@@ -2,7 +2,7 @@
   <div class="flex flex-col gap-1">
     <p class="text-[12px] text-neutral-mid-grey">
       <a href="{{  product.collections[0].url }}" class="link-underline"> {{ product.collections[0].title }}</a> >
-      {{ product.tags[0] | capitalize }}
+      {{ product.category | capitalize }}
     </p>
     <h1 class="text-[16px] font-semibold">{{ product.title | escape }}</h1>
     <p class="text-neutral-mid-grey">{{ product.price | money }}</p>
@@ -12,7 +12,10 @@
 </header>
 
 <div x-data="productForm()" class="flex flex-col gap-4">
-  <div class="divide-y divide-neutral-light-grey border border-neutral-light-grey">
+  <div
+    class="border border-neutral-light-grey"
+    :class="{ 'divide-y divide-neutral-light-grey': [hasSize, hasColor, hasMaterial].filter(Boolean).length > 1 }"
+  >
     {% render 'product-page-sizes-drawer' %}
     {% render 'product-page-colors-drawer' %}
     {% render 'product-page-tissus-drawer' %}
