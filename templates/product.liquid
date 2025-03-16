@@ -2,7 +2,43 @@
 {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
 
 <div class="relative mt-[calc(var(--header-height)_+_1rem)] grid w-full grid-cols-1 gap-4 margin-px-1 lg:grid-cols-[1fr_0.7fr] lg:gap-16">
-  <section id="product-images" class="relative grid grid-cols-1">
+  <section
+    id="product-images"
+    x-data="
+      {
+        currentSlide: 0,
+        images: [
+          {% for image in product.images %}
+            '{{ image | image_url }}',
+          {% endfor %}
+        ],
+        touchStartX: 0,
+        touchEndX: 0,
+
+        handleTouchStart(e) {
+          this.touchStartX = e.touches[0].clientX;
+        },
+
+        handleTouchMove(e) {
+          this.touchEndX = e.touches[0].clientX;
+        },
+
+        handleTouchEnd() {
+          const diffX = this.touchStartX - this.touchEndX;
+          const threshold = 50;
+
+          if (Math.abs(diffX) > threshold) {
+            if (diffX > 0 && this.currentSlide < this.images.length - 1) {
+              this.currentSlide++;
+            } else if (diffX < 0 && this.currentSlide > 0) {
+              this.currentSlide--;
+            }
+          }
+        }
+      }
+    "
+    class="relative grid grid-cols-1"
+  >
     <a
       href="#complete-the-look"
       id="sticky-text"
@@ -14,34 +50,22 @@
         width="32px"
         height="32px"
       >
-
       <p>Complete the look</p>
     </a>
 
-    <img
-      class="aspect-square h-full w-full bg-neutral-light-grey object-cover object-top"
-      src="{{ product.images[0]  | image_url }}"
-      alt="{{ featured_image.alt | escape }}"
-      width="100%"
-      height="100%"
-    >
-    <img
-      class="aspect-square h-full w-full bg-neutral-light-grey object-cover object-top"
-      src="{{ product.images[1]  | image_url }}"
-      alt="{{ featured_image.alt | escape }}"
-      width="100%"
-      height="100%"
-    >
+    {% render 'product-page-slider-mobile' %}
 
-    {% if product.images[2] %}
-      <img
-        class="aspect-square h-full w-full bg-neutral-light-grey object-cover object-top"
-        src="{{ product.images[2]  | image_url }}"
-        alt="{{ featured_image.alt | escape }}"
-        width="100%"
-        height="100%"
-      >
-    {% endif %}
+    <div class="hidden lg:grid lg:grid-cols-1">
+      {% for image in product.images %}
+        <img
+          class="aspect-square h-full w-full bg-neutral-light-grey object-cover object-top"
+          src="{{ image  | image_url }}"
+          alt="{{ image.alt | escape }}"
+          width="100%"
+          height="100%"
+        >
+      {% endfor %}
+    </div>
   </section>
 
   <section class="sticky top-[var(--header-height)] flex h-max flex-col gap-8">
