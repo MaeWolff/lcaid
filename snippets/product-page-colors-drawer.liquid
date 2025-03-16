@@ -46,6 +46,7 @@
       </button>
     </template>
 
+    <div class="mt-12 w-full">
     <button
       :disabled="!selectedColor"
       class="w-full bg-neutral-black py-3 text-white disabled:bg-neutral-mid-grey"
@@ -53,6 +54,7 @@
     >
       {{ "buttons.apply_selection" | t }}
     </button>
+  </div>
   </div>
   {% endcapture %}
 

@@ -33,13 +33,15 @@
       </button>
     </template>
 
-    <button
-      :disabled="!selectedMaterial"
-      class="w-full bg-neutral-black py-3 text-white disabled:bg-neutral-mid-grey"
-      @click="closeDrawer()"
-    >
-      {{ "buttons.apply_selection" | t }}
-    </button>
+    <div class="mt-12 w-full">
+      <button
+        :disabled="!selectedMaterial"
+        class="w-full bg-neutral-black py-3 text-white disabled:bg-neutral-mid-grey"
+        @click="closeDrawer()"
+      >
+        {{ "buttons.apply_selection" | t }}
+      </button>
+    </div>
   </div>
 {% endcapture %}
 

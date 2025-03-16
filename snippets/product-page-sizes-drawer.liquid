@@ -20,27 +20,29 @@
     </div>
   {% endcapture %}
 
-{% capture size_drawer_content %}
-  <div class="flex flex-wrap gap-4">
-    <template x-for="size in sizes" :key="size">
-      <button
-        type="button"
-        @click="selectSize(size)"
-        class="min-w-28 px-4 py-2 text-center"
-        :class="{ 'border border-neutral-black': selectedSize === size, 'border border-neutral-light-grey': selectedSize !== size }"
-      >
-        <span x-text="size"></span>
-      </button>
-    </template>
+{% capture size_drawer_content %} 
+<div class="flex flex-wrap gap-4">
+  <template x-for="size in sizes" :key="size">
+    <button
+      type="button"
+      @click="selectSize(size)"
+      class="min-w-28 px-4 py-2 text-center"
+      :class="{ 'border border-neutral-black': selectedSize === size, 'border border-neutral-light-grey': selectedSize !== size }"
+    >
+      <span x-text="size"></span>
+    </button>
+  </template>
 
+  <div class="mt-12 w-full">
     <button
       :disabled="!selectedSize"
       class="w-full bg-neutral-black py-3 text-white disabled:bg-neutral-mid-grey"
       @click="closeDrawer()"
     >
-      {{ "buttons.apply_selection" | t }}
+      {{ 'buttons.apply_selection' | t }}
     </button>
   </div>
+</div>
 {% endcapture %}
 
 {% if has_size %}

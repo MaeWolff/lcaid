@@ -3,12 +3,20 @@
 
 <div class="relative mt-[calc(var(--header-height)_+_1rem)] grid w-full grid-cols-1 gap-4 margin-px-1 lg:grid-cols-[1fr_0.7fr] lg:gap-16">
   <section id="product-images" class="relative grid grid-cols-1">
-    <div
+    <a
+      href="#complete-the-look"
       id="sticky-text"
-      class="fixed bottom-10 left-1/4 -translate-x-1/4 bg-white p-4 opacity-100 shadow-lg transition-opacity duration-300"
+      class="fixed bottom-10 left-1/2 flex -translate-x-1/2 items-center justify-center gap-4 bg-white p-4 opacity-100 shadow-lg transition-opacity duration-300 lg:left-1/4 lg:-translate-x-1/4"
     >
-      Complete the look
-    </div>
+      <img
+        class="aspect-square h-[32px] w-[32px] object-cover object-top"
+        src="{{ product.images[0]  | image_url: width: 56, height: 56 }}"
+        width="32px"
+        height="32px"
+      >
+
+      <p>Complete the look</p>
+    </a>
 
     <img
       class="aspect-square h-full w-full bg-neutral-light-grey object-cover object-top"
@@ -46,20 +54,41 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const section = document.getElementById('product-images');
     const text = document.getElementById('sticky-text');
+    const section = document.getElementById('product-images');
+
+    const sentinel = document.createElement('div');
+    sentinel.style.position = 'absolute';
+    sentinel.style.bottom = '0px';
+    sentinel.style.width = '100%';
+    sentinel.style.height = '1px';
+    section.appendChild(sentinel);
+
+    let textHidden = false;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          text.classList.add('block'); // Affiche le texte
-        } else {
-          text.classList.remove('block'); // Cache le texte
+        const sectionRect = section.getBoundingClientRect();
+        const textRect = text.getBoundingClientRect();
+
+        if (entry.isIntersecting && !textHidden) {
+          text.classList.add('hidden');
+          textHidden = true;
+        }
+
+        if (!entry.isIntersecting && textHidden) {
+          const textBottom = textRect.bottom;
+          const sectionBottom = sectionRect.bottom;
+
+          if (textBottom < sectionBottom) {
+            text.classList.remove('hidden');
+            textHidden = false;
+          }
         }
       },
-      { root: null, threshold: 0.1 }, // Déclenche quand 10% de la section est visible
+      { root: null, threshold: 1 },
     );
 
-    observer.observe(section);
+    observer.observe(sentinel);
   });
 </script>
