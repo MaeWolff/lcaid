@@ -58,7 +58,8 @@
     "discover": "Discover product",
     "discover_collection": "Discover collection",
     "apply_selection": "Apply selection",
-    "all_clear": "Clear all"
+    "all_clear": "Clear all",
+    "go_to_form": "Go to the form"
   },
   "footer": {
     "links": {

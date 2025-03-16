@@ -28,7 +28,7 @@
       "select": "اختر",
       "size": "المقاس",
       "color": "اللون",
-      "material": "Material"
+      "material": "المادة"
     },
     "filters": {
       "title": "الفلاتر",
@@ -58,7 +58,8 @@
     "discover": "اكتشف المنتج",
     "discover_collection": "اكتشف المجموعة",
     "apply_selection": "تطبيق الاختيار",
-    "all_clear": "Clear all"
+    "all_clear": "مسح الكل",
+    "go_to_form": "الانتقال إلى الاستمارة"
   },
   "footer": {
     "links": {
