@@ -1,0 +1,18 @@
+{% assign sizing_guide_title = 'products.sizing_guide' | t %}
+
+{% capture sizing_guide_button %}
+  <p class="whitespace-nowrap underline">{{ 'products.sizing_guide' | t }}</p>
+{% endcapture %}
+
+{% capture sizing_guide_content %} 
+<div class="flex flex-wrap gap-4">
+  <img src="{{ settings.products_sizing_guide | image_url }}" width="100%" height="100%" class="aspect-video h-auto w-full">
+</div>
+{% endcapture %}
+
+{% render 'drawer',
+  button_text: sizing_guide_button,
+  button_classes: '',
+  title: sizing_guide_title,
+  content: sizing_guide_content
+%}

@@ -18,9 +18,9 @@
     {% render 'product-page-tissus-drawer' %}
   </div>
 
-  <div class="flex w-full flex-row justify-between gap-6 text-neutral-mid-grey">
+  <div class="flex w-full flex-row items-center justify-between gap-6 text-neutral-mid-grey">
     <p>{{ product.metafields.custom.model_size }}</p>
-    <p class="whitespace-nowrap underline">{{ 'products.sizing_guide' | t }}</p>
+    {% render 'product-page-sizing-guide-drawer' %}
   </div>
 
   <form action="/cart/add" method="post" class="mt-5">

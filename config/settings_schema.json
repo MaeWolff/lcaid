@@ -25,7 +25,17 @@
     ]
   },
   {
-    "name": "À modifier",
+    "name": "Products",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "products_sizing_guide",
+        "label": "Guide des tailles"
+      }
+    ]
+  },
+  {
+    "name": "Détails du site",
     "settings": [
       {
         "type": "image_picker",
