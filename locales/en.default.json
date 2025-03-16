@@ -27,7 +27,8 @@
     "selectors": {
       "select": "Select",
       "size": "Size",
-      "color": "Color"
+      "color": "Color",
+      "material": "Material"
     },
     "filters": {
       "title": "Filters",

@@ -27,7 +27,8 @@
     "selectors": {
       "select": "Sélectionner",
       "size": "Taille",
-      "color": "Couleur"
+      "color": "Couleur",
+      "material": "Tissus"
     },
     "filters": {
       "title": "Filtres",

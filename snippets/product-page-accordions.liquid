@@ -8,9 +8,7 @@
     >
       <p class="font-medium">{{ 'products.accordions.descrition' | t }}</p>
       <span :class="openIndex === 0 ? 'rotate-180' : 'rotate-0'" class="transition-transform duration-300">
-        <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1.5979L5 5.5979L9 1.5979" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        {% render 'icon-accordion' %}
       </span>
     </button>
 
@@ -33,9 +31,7 @@
     >
       <p class="font-medium">{{ 'products.accordions.cleaning' | t }}</p>
       <span :class="openIndex === 1 ? 'rotate-180' : 'rotate-0'" class="transition-transform duration-300">
-        <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1.5979L5 5.5979L9 1.5979" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        {% render 'icon-accordion' %}
       </span>
     </button>
 
@@ -58,9 +54,7 @@
     >
       <p class="font-medium">{{ 'products.accordions.shipping' | t }}</p>
       <span :class="openIndex === 2 ? 'rotate-180' : 'rotate-0'" class="transition-transform duration-300">
-        <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1.5979L5 5.5979L9 1.5979" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        {% render 'icon-accordion' %}
       </span>
     </button>
 

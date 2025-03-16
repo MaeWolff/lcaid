@@ -27,7 +27,8 @@
     "selectors": {
       "select": "اختر",
       "size": "المقاس",
-      "color": "اللون"
+      "color": "اللون",
+      "material": "Material"
     },
     "filters": {
       "title": "الفلاتر",

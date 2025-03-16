@@ -30,7 +30,7 @@
 
     <div class="mx-auto w-[90%]">
       <div x-show="activeTab === 0" class="w-full">
-        <div class="grid w-full grid-cols-2 gap-4 lg:grid-cols-3">
+        <div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-3">
           {% for product in collections.all.products %}
             {% assign counter = 0 %}
             {% if product.tags contains 'pantalons' and counter < 3 %}
@@ -42,7 +42,7 @@
       </div>
 
       <div x-show="activeTab === 1" class="w-full">
-        <div class="grid w-full grid-cols-2 gap-4 lg:grid-cols-3">
+        <div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-3">
           {% for product in collections.all.products %}
             {% if product.tags contains 'hauts' %}
               {% render 'collection-product-card', product: product %}
@@ -52,7 +52,7 @@
       </div>
 
       <div x-show="activeTab === 2" class="w-full">
-        <div class="grid w-full grid-cols-2 gap-4 lg:grid-cols-3">
+        <div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-3">
           {% for product in collections.all.products %}
             {% if product.tags contains 'accessoires' %}
               {% render 'collection-product-card', product: product %}

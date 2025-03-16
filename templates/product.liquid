@@ -24,6 +24,16 @@
       width="100%"
       height="100%"
     >
+
+    {% if product.images[2] %}
+      <img
+        class="aspect-square h-full w-full bg-neutral-light-grey object-cover object-top"
+        src="{{ product.images[2]  | image_url }}"
+        alt="{{ featured_image.alt | escape }}"
+        width="100%"
+        height="100%"
+      >
+    {% endif %}
   </section>
 
   <section class="sticky top-[var(--header-height)] flex h-max flex-col gap-8">

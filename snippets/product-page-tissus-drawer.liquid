@@ -1,23 +1,53 @@
-{% assign has_tissu = false %}
+{% assign has_materials = false %}
 
-{% for option in product.options_with_values %}
-  {% if option.name == 'Tissu' %}
-    {% assign has_tissu = true %}
-  {% endif %}
-{% endfor %}
+{%- for option in product.options_with_values -%}
+  {%- if option.name == 'Clothing accessory material' -%}
+    {% assign has_materials = true %}
+  {%- endif -%}
+{%- endfor -%}
 
-{% if has_tissu %}
-  {% capture tissus_drawer_title %}
-    <div class="flex w-full flex-row justify-between">
-      <span class="font-semibold">Tissu</span>
-      <span>Coton</span>
+{% capture materials_drawer_title %}
+    <div class="flex w-full justify-between">
+      <span class="font-semibold">{{ "products.selectors.material" | t }}</span>
+
+      <div class="flex flex-row items-baseline gap-2">
+        <span
+          x-text="selectedMaterial ? selectedMaterial : '{{ "products.selectors.select" | t }}'"
+          :class="{ 'text-neutral-mid-grey': !selectedMaterial, 'text-neutral-black': selectedMaterial }"
+        ></span>
+        {% render 'icon-accordion' %}
+      </div>
     </div>
-  {% endcapture %}
+{% endcapture %}
 
+{% capture materials_drawer_content %}
+  <div class="flex flex-wrap gap-4">
+    <template x-for="material in materials" :key="material">
+      <button
+        type="button"
+        @click="selectMaterial(material)"
+        class="min-w-28 px-4 py-2 text-center"
+        :class="{ 'border border-neutral-black': selectedMaterial === material, 'border border-neutral-light-grey': selectedMaterial !== material }"
+      >
+        <span x-text="material"></span>
+      </button>
+    </template>
+
+    <button
+      :disabled="!selectedMaterial"
+      class="w-full bg-neutral-black py-3 text-white disabled:bg-neutral-mid-grey"
+      @click="closeDrawer()"
+    >
+      {{ "buttons.apply_selection" | t }}
+    </button>
+  </div>
+{% endcapture %}
+
+{% if has_materials %}
   {% render 'drawer',
-    button_text: tissus_drawer_title,
+    button_text: materials_drawer_title,
     button_classes: 'w-full p-4',
-    title: 'Tissus',
-    content: size-drawer
+    title: 'Materials',
+    content: materials_drawer_content
   %}
 {% endif %}

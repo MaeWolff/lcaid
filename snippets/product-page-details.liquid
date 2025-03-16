@@ -19,15 +19,15 @@
   </div>
 
   <div class="flex w-full flex-row justify-between gap-6 text-neutral-mid-grey">
-    <p>Le mannequin mesure 176cm & porte une Taille M</p>
-    <p class="underline">{{ 'products.sizing_guide' | t }}</p>
+    <p>{{ product.metafields.custom.model_size }}</p>
+    <p class="whitespace-nowrap underline">{{ 'products.sizing_guide' | t }}</p>
   </div>
 
   <form action="/cart/add" method="post" class="mt-5">
     <input type="hidden" name="id" :value="selectedVariantId">
     <button
       type="submit"
-      :disabled="!selectedVariantId"
+      :disabled="isButtonDisabled()"
       class="w-full bg-neutral-black py-3 text-white disabled:bg-neutral-mid-grey"
     >
       {{ 'cart.add' | t }}
@@ -40,12 +40,15 @@
     return {
       hasSize: false,
       hasColor: false,
+      hasMaterial: false,
       sizes: [],
       colors: [],
+      materials: [],
       variants: {{ product.variants | json }},
 
       selectedSize: null,
       selectedColor: null,
+      selectedMaterial: null,
       selectedVariantId: '{{ product.selected_or_first_available_variant.id }}',
 
       init() {
@@ -55,7 +58,7 @@
         options.forEach(option => {
           if (option.name === 'Size' || option.name === "Taille") {
             this.hasSize = true;
-            this.sizes = option.values
+            this.sizes = option.values;
           }
 
           if (option.name === 'Couleur' || option.name === "Color") {
@@ -67,6 +70,11 @@
                 hex: colorObj ? colorObj.color : '#000000'
               };
             });
+          }
+
+          if (option.name === 'Clothing accessory material') {
+            this.hasMaterial = true;
+            this.materials = option.values;
           }
         });
 
@@ -83,14 +91,28 @@
         this.updateVariant();
       },
 
+      selectMaterial(material) {
+        this.selectedMaterial = material;
+        this.updateVariant();
+      },
+
+
       updateVariant() {
         const variant = this.variants.find(v => {
           const matchesSize = !this.hasSize || v.option1 === this.selectedSize;
-          const matchesColor = !this.hasColor || v.option2 === this.selectedColor.name;
-          return matchesSize && matchesColor;
+          const matchesColor = !this.hasColor || v.option2 === this.selectedColor?.name;
+          const matchesMaterial = !this.hasMaterial || v.option3 === this.selectedMaterial;
+          return matchesSize && matchesColor && matchesMaterial;
         });
 
         this.selectedVariantId = variant ? variant.id : null;
+      },
+
+      isButtonDisabled() {
+        const colorRequired = this.hasColor && !this.selectedColor;
+        const sizeRequired = this.hasSize && !this.selectedSize;
+        const materialRequired = this.hasMaterial && !this.selectedMaterial;
+        return colorRequired || sizeRequired || materialRequired || !this.selectedVariantId;
       },
     };
   }

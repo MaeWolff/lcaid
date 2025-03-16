@@ -9,10 +9,14 @@
 {% capture size_drawer_title %}
     <div class="flex w-full justify-between">
       <span class="font-semibold">{{  "products.selectors.size" | t}}</span>
-      <span
-        x-text="selectedSize ? selectedSize : '{{ "products.selectors.select" | t }}'"
-        :class="{ 'text-neutral-mid-grey': !selectedSize, 'text-neutral-black': selectedSize }"
-      ></span>
+
+      <div class="flex flex-row items-baseline gap-2">
+        <span
+          x-text="selectedSize ? selectedSize : '{{ "products.selectors.select" | t }}'"
+          :class="{ 'text-neutral-mid-grey': !selectedSize, 'text-neutral-black': selectedSize }"
+        ></span>
+        {% render 'icon-accordion' %}
+    </div>
     </div>
   {% endcapture %}
 
