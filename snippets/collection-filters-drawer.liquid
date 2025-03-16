@@ -1,51 +1,55 @@
 {% assign filters_button_text = 'products.filters.title' | t %}
 
 {% capture filters_drawer_content %}
-<form class="space-y-6 p-4">
+<form class="space-y-6 p-2" id="filters-form">
   {%- for filter in collection.filters -%}
-    <details class="border-b border-gray-300 pb-2">
+    <details class="pb-2">
       <summary class="flex cursor-pointer items-center justify-between font-medium">
+      <div class="flex flex-row items-center gap-2">
         <span>{{ filter.label }}</span>
         {%- if filter.active_values.size > 0 -%}
           <span class="flex h-[14px] w-[14px] items-center justify-center rounded-full bg-neutral-black text-center text-[8px] text-white">
             {{- filter.active_values.size -}}
           </span>
         {%- endif -%}
+        </div>
 
-        
-      </summary>
+        {% render 'icon-accordion' %}
+      </summary> 
 
       <div class="mt-2 space-y-3">
         {%- if filter.active_values.size > 0 -%}
-          <div class="flex items-center justify-between text-sm text-gray-600">
-            <p>{{ filter.active_values.size }} sélectionné(s)</p>
-            <a href="{{ filter.url_to_remove }}" class="text-red-500 hover:underline">Réinitialiser</a>
-          </div>
+            <a href="{{ filter.url_to_remove }}" class="link-underline text-[12px] text-red-500">{{- 'buttons.all_clear' | t -}}</a>
         {%- endif -%}
 
         {%- case filter.type -%}
           {%- when 'list' -%}
-            <ul class="grid grid-cols-2 gap-2">
+            <ul class="flex flex-wrap gap-2">
               {%- for filter_value in filter.values -%}
-                <li x-data="{ isActive: {{ filter_value.active | json }},  isAvailable: {{ filter_value.count == 0 }} }">
-                  <label class="flex cursor-pointer items-center space-x-2" :class="{ 'cursor-not-allowed opacity-50': !isAvailable }">
+                <li x-data="{ isActive: {{ filter_value.active | json }}, isAvailable: {{ filter_value.count == 0 }} }">
+                  <div>
                     <input
                       type="checkbox"
-                      name="{{ filter_value.param_name }}"
+                      id="Filter-{{ filter.param_name }}-{{ forloop.index }}"
+                      name="{{ filter.param_name }}"
                       value="{{ filter_value.value }}"
-                      id="Filter-{{ filter.param_name }}-{{ forloop.index }}" 
-                      class="form-checkbox h-5 w-5 text-blue-600"
-                      {% if filter_value.active %}
-                        checked
-                      {% endif %}
-                      {% if filter_value.count == 0 and filter_value.active == false %}
-                        disabled class="cursor-not-allowed"
-                      {% endif %}
+                      class="sr-only"
+                      x-model="isActive"
+                      x-bind:checked="isActive"
+                    > 
+
+                    <div 
+                      class="flex cursor-pointer items-center justify-between border p-2 transition-colors"
+                      :class="{
+                        'border-neutral-light-grey': !isActive,
+                        'border-neutral-black': isActive,
+                        'opacity-50 line-through': !isAvailable
+                      }"
+                      @click="isActive = !isActive; document.getElementById('Filter-{{ filter.param_name }}-{{ forloop.index }}').click();"
                     >
-                      <span :class="{ 'line-through cursor-not-allowed': !isAvailable }">
-                        {{- filter_value.label -}}
-                      </span>
-                  </label>
+                      <span>{{ filter_value.label }}</span>
+                    </div>
+                  </div>
                 </li>
               {%- endfor -%} 
             </ul>
@@ -76,7 +80,7 @@
     </details>
   {%- endfor -%}
 
-  <div class="flex flex-col gap-4">
+  <div class="flex flex-col gap-4" style="margin-top: 3rem;">
     <button
       type="submit"
       class="flex w-full flex-row items-center justify-center bg-neutral-black p-2 text-white hover:bg-neutral-black/80"
