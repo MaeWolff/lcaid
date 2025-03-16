@@ -58,7 +58,7 @@
     <div class="hidden lg:grid lg:grid-cols-1">
       {% for image in product.images %}
         <img
-          class="aspect-square h-full w-full bg-neutral-light-grey object-cover object-top"
+          class="aspect-square h-full w-full bg-neutral-light-grey object-cover object-center"
           src="{{ image  | image_url }}"
           alt="{{ image.alt | escape }}"
           width="100%"

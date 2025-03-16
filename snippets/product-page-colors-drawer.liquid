@@ -1,13 +1,12 @@
-<div x-data="{ selectedVariant: '{{ product.selected_or_first_available_variant.id }}', selectedColor: null }">
-  {% assign has_color = false %}
+{% assign has_color = false %}
 
-  {%- for option in product.options_with_values -%}
-    {%- if option.name == 'Couleur' or option.name == 'Color' -%}
-      {% assign has_color = true %}
-    {%- endif -%}
-  {%- endfor -%}
+{%- for option in product.options_with_values -%}
+  {%- if option.name == 'Couleur' or option.name == 'Color' -%}
+    {% assign has_color = true %}
+  {%- endif -%}
+{%- endfor -%}
 
-  {% capture color_drawer_title %}
+{% capture color_drawer_title %}
   <div class="flex w-full justify-between">
     <span class="font-semibold">{{ 'products.selectors.color' | t }}</span>
 
@@ -18,9 +17,9 @@
       ></p>
 
       <div
-        x-show="selectedColor.hex"
-        class="h-2 w-2 rounded-full"
-        :style="{ backgroundColor: selectedColor.hex }"
+        x-show="selectedColor !== null"
+        class="h-[6px] w-[6px] rounded-full"
+        :style="{ backgroundColor: selectedColor?.hex }"
         x-cloak
       ></div>
 
@@ -29,9 +28,9 @@
   </div>
   {% endcapture %}
 
-  {% capture color_drawer_content %}
+{% capture color_drawer_content %}
   <div class="flex flex-wrap gap-4">
-    <template x-for="color in colors" :key="color">
+    <template x-for="color in colors" :key="color.name">
       <button
         type="button"
         @click="selectColor(color)"
@@ -40,8 +39,8 @@
       >
         <span x-text="color.name"></span>
         <div
-          class="h-6 w-6 rounded-full border border-zinc-100"
-          :style="{ backgroundColor: color.hex }"
+          class="h-[6px] w-[6px] rounded-full"
+          :style="{ backgroundColor: color.hex }" 
         ></div>
       </button>
     </template>
@@ -58,12 +57,11 @@
   </div>
   {% endcapture %}
 
-  {% if has_color %}
-    {% render 'drawer',
-      button_text: color_drawer_title,
-      button_classes: 'w-full p-4',
-      title: 'Couleurs',
-      content: color_drawer_content
-    %}
-  {% endif %}
-</div>
+{% if has_color %}
+  {% render 'drawer',
+    button_text: color_drawer_title,
+    button_classes: 'w-full p-4',
+    title: 'Couleurs',
+    content: color_drawer_content
+  %}
+{% endif %}

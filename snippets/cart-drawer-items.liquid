@@ -58,7 +58,9 @@
               <div class="flex w-full flex-col justify-between">
                 <div class="flex w-full flex-col gap-2">
                   <p class="font-medium">{{ line_item.title | escape }}</p>
-                  <p class="text-neutral-mid-grey">{{ line_item.product.metafields.custom.short_description }}</p>
+                  <p class="line-clamp-2 text-neutral-mid-grey">
+                    {{ line_item.product.metafields.custom.short_description }}
+                  </p>
                 </div>
 
                 <p class="font-medium">{{ line_item.price | money }}</p>

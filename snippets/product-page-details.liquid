@@ -14,7 +14,7 @@
 <div x-data="productForm()" class="flex flex-col gap-4">
   <div
     class="border border-neutral-light-grey"
-    :class="{ 'divide-y divide-neutral-light-grey': [hasSize, hasColor, hasMaterial].filter(Boolean).length > 1 }"
+    :class="{ 'divide-y divide-neutral-light-grey': [hasSize, hasColor, hasMaterial].filter(Boolean).length > 0 }"
   >
     {% render 'product-page-sizes-drawer' %}
     {% render 'product-page-colors-drawer' %}
