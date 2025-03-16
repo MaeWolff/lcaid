@@ -25,23 +25,13 @@
     <template x-for="material in materials" :key="material">
       <button
         type="button"
-        @click="selectMaterial(material)"
+        @click="selectMaterial(material); $dispatch('close-drawer')"
         class="min-w-28 px-4 py-2 text-center"
         :class="{ 'border border-neutral-black': selectedMaterial === material, 'border border-neutral-light-grey': selectedMaterial !== material }"
       >
         <span x-text="material"></span>
       </button>
     </template>
-
-    <div class="mt-12 w-full">
-      <button
-        :disabled="!selectedMaterial"
-        class="w-full bg-neutral-black py-3 text-white disabled:bg-neutral-mid-grey"
-        @click="closeDrawer()"
-      >
-        {{ "buttons.apply_selection" | t }}
-      </button>
-    </div>
   </div>
 {% endcapture %}
 

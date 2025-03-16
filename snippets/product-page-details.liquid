@@ -57,27 +57,51 @@
       init() {
         const options = {{ product.options_with_values | json }};
         const colorMeta = {{ product.metafields.shopify.color-pattern.value | json }};
-
-        options.forEach(option => {
+        const defaultVariant = {{ product.selected_or_first_available_variant | json }};
+        
+        options.forEach((option, index) => {
+          const position = index + 1;
+          
           if (option.name === 'Size' || option.name === "Taille") {
             this.hasSize = true;
             this.sizes = option.values;
+            this.optionPositions = this.optionPositions || {};
+            this.optionPositions.size = position;
+            
+            if (defaultVariant && defaultVariant[`option${position}`]) {
+              this.selectedSize = defaultVariant[`option${position}`];
+            }
           }
 
           if (option.name === 'Couleur' || option.name === "Color") {
             this.hasColor = true;
             this.colors = option.values.map(colorName => {
-              let colorObj = colorMeta.find(c => c.label === colorName);
+              let colorObj = colorMeta ? colorMeta.find(c => c.label === colorName) : null;
               return {
                 name: colorName,
                 hex: colorObj ? colorObj.color : '#000000'
               };
             });
+            
+            this.optionPositions = this.optionPositions || {};
+            this.optionPositions.color = position;
+            
+            if (defaultVariant && defaultVariant[`option${position}`]) {
+              const defaultColorName = defaultVariant[`option${position}`];
+              this.selectedColor = this.colors.find(c => c.name === defaultColorName);
+            }
           }
 
           if (option.name === 'Clothing accessory material') {
             this.hasMaterial = true;
             this.materials = option.values;
+            
+            this.optionPositions = this.optionPositions || {};
+            this.optionPositions.material = position;
+            
+            if (defaultVariant && defaultVariant[`option${position}`]) {
+              this.selectedMaterial = defaultVariant[`option${position}`];
+            }
           }
         });
 
@@ -99,23 +123,55 @@
         this.updateVariant();
       },
 
-
-      updateVariant() {
+      updateVariant() {    
+        if (!this.optionPositions) {
+          console.error('Positions des options non définies');
+          return;
+        }
+        
         const variant = this.variants.find(v => {
-          const matchesSize = !this.hasSize || v.option1 === this.selectedSize;
-          const matchesColor = !this.hasColor || v.option2 === this.selectedColor?.name;
-          const matchesMaterial = !this.hasMaterial || v.option3 === this.selectedMaterial;
-          return matchesSize && matchesColor && matchesMaterial;
+          let isMatch = true;
+          
+          if (this.hasSize && this.optionPositions.size) {
+            const sizeMatch = v[`option${this.optionPositions.size}`] === this.selectedSize;
+            isMatch = isMatch && sizeMatch;
+          }
+          
+          if (this.hasColor && this.optionPositions.color) {
+            const colorName = typeof this.selectedColor === 'string' ? this.selectedColor : this.selectedColor?.name;
+            const colorMatch = v[`option${this.optionPositions.color}`] === colorName;
+            isMatch = isMatch && colorMatch;
+          }
+          
+          if (this.hasMaterial && this.optionPositions.material) {
+            const materialMatch = v[`option${this.optionPositions.material}`] === this.selectedMaterial;
+            isMatch = isMatch && materialMatch;
+          }
+          
+          return isMatch;
         });
-
+        
         this.selectedVariantId = variant ? variant.id : null;
       },
 
       isButtonDisabled() {
-        const colorRequired = this.hasColor && !this.selectedColor;
-        const sizeRequired = this.hasSize && !this.selectedSize;
-        const materialRequired = this.hasMaterial && !this.selectedMaterial;
-        return colorRequired || sizeRequired || materialRequired || !this.selectedVariantId;
+        let isDisabled = false;
+        
+        if (this.hasColor) {
+          isDisabled = isDisabled || !this.selectedColor;
+        }
+        
+        if (this.hasSize) {
+          isDisabled = isDisabled || !this.selectedSize;
+        }
+        
+        if (this.hasMaterial) {
+          isDisabled = isDisabled || !this.selectedMaterial;
+        }   
+        
+        isDisabled = isDisabled || !this.selectedVariantId;
+          
+        return isDisabled;
       },
     };
   }
