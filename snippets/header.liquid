@@ -43,18 +43,6 @@
       }
     "
   >
-    {% comment %}
-      <nav class="hidden flex-row place-content-start items-center gap-5 lg:flex">
-        {% for link in linklists['main-menu'].links -%}
-          <a class="{% if link.active %}italic{% endif %}" href="{{ link.url }}">
-            {{ link.title }}
-
-            <span class="h-5 w-full bg-neutral-black"></span>
-          </a>
-        {%- endfor %}
-      </nav>
-    {% endcomment %}
-
     <button class="flex w-fit flex-row items-center gap-3" id="mobile-menu-button">
       <div class="flex flex-col gap-2">
         <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -107,29 +95,15 @@
         </button>
 
         <div x-show="open" class="ml-4 flex flex-col gap-2 overflow-hidden text-[14px] transition-all duration-300">
-          <a href="{{ routes.all_products_collection_url }}/all }}" class="flex w-full justify-between py-2">
-            Tous les produits
+          <a href="{{ routes.all_products_collection_url }}" class="flex w-full justify-between py-2">
+            {{- 'products.categories.all' | t -}}
           </a>
 
-          <a href="{{ routes.all_products_collection_url }}/qamis }}" class="flex w-full justify-between py-2">
-            Chemises & Chemisiers
-          </a>
-
-          <a href="{{ routes.all_products_collection_url }}/qamis }}" class="flex w-full justify-between py-2">
-            Gilets
-          </a>
-          <a href="{{ routes.all_products_collection_url }}/pantalons }}" class="flex w-full justify-between py-2">
-            Pantalons
-          </a>
-          <a href="{{ routes.all_products_collection_url }}/qamis }}" class="flex w-full justify-between py-2">
-            Manteaux & Capes
-          </a>
-          <a href="{{ routes.all_products_collection_url }}/accessoires }}" class="flex w-full justify-between py-2">
-            Accessoires
-          </a>
-          <a href="{{ routes.collections_url }}/collection-moon" class="flex w-full justify-between py-2">
-            Collections Moon
-          </a>
+          {% for collection in collections %}
+            <a href="{{ collection.url }}" class="flex w-full justify-between py-2">
+              {{ collection.title }}
+            </a>
+          {% endfor %}
         </div>
       </div>
 
