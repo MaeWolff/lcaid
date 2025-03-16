@@ -11,7 +11,7 @@
     >
       {% for image in product.images %}
         <img
-          class="h-full min-w-full bg-neutral-light-grey object-cover object-top"
+          class="h-full min-w-full rounded-sm bg-neutral-light-grey object-cover object-top"
           src="{{ image | image_url }}"
           alt="{{ image.alt | escape }}"
           width="100%"

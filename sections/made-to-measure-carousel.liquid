@@ -46,7 +46,7 @@
     <p>{{ section.settings.text_2 }}</p>
     <a
       href="#contact-form"
-      class="w-full max-w-[300px] cursor-pointer bg-neutral-black py-3 text-center text-white hover:bg-neutral-black/80 disabled:bg-neutral-mid-grey"
+      class="btn-primary w-full max-w-[300px]"
     >
       Accéder au formulaire
     </a>
@@ -57,7 +57,7 @@
       id="main-image"
       src="{{ section.settings.image_1 | image_url }}"
       alt="Image principale"
-      class="h-full w-full object-cover"
+      class="h-full w-full rounded-sm object-cover"
       width="100%"
       height="100%"
     >
@@ -69,7 +69,7 @@
           <img
             src="{{ section.settings[image_key] | image_url }}"
             alt="Miniature {{ i }}"
-            class="thumbnail h-[50px] w-[50px] cursor-pointer object-cover {%if forloop.index0 == 0 %}opacity-100{% else %}opacity-50{% endif %}"
+            class="thumbnail h-[50px] w-[50px] cursor-pointer rounded-sm object-cover {%if forloop.index0 == 0 %}opacity-100{% else %}opacity-50{% endif %}"
             data-large-image="{{ section.settings[image_key] | image_url }}"
             width="100%"
             height="100%"

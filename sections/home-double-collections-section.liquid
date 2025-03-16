@@ -20,14 +20,14 @@
 {% assign collection_1 = collections[section.settings.collection_1] %}
 {% assign collection_2 = collections[section.settings.collection_2] %}
 
-<section class="grid w-full grid-cols-1 gap-8 margin-px-1 lg:grid-cols-2 lg:gutter-gap-1">
+<section class="flex w-full flex-col gap-8 margin-px-1 lg:grid lg:grid-cols-2 lg:gutter-gap-1">
   <a href="{{ collection_1.url }}" class="flex w-full flex-col items-center justify-center gap-3 text-center">
-    <div class="h-[330px] w-full bg-neutral-light-grey">
+    <div class="h-[246px] w-full bg-neutral-light-grey lg:h-[330px]">
       <img
         src="{{ collection_1.featured_image |  image_url }}"
         width="100%"
         height="100%"
-        class="h-full w-full object-cover"
+        class="h-full w-full rounded-sm object-cover"
       >
     </div>
 
@@ -38,12 +38,12 @@
   </a>
 
   <a href="{{ collection_2.url }}" class="flex w-full flex-col items-center justify-center gap-3 text-center">
-    <div class="h-[330px] w-full bg-neutral-light-grey">
+    <div class="h-[246px] w-full bg-neutral-light-grey lg:h-[330px]">
       <img
         src="{{ collection_2.featured_image |  image_url }}"
         width="100%"
         height="100%"
-        class="h-full w-full object-cover"
+        class="h-full w-full rounded-sm object-cover"
       >
     </div>
 
