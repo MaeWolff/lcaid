@@ -1,13 +1,74 @@
-{% assign sizing_guide_title = 'products.sizing_guide' | t %}
-
 {% capture sizing_guide_button %}
   <p class="whitespace-nowrap underline">{{ 'products.sizing_guide' | t }}</p>
 {% endcapture %}
 
+{% capture sizing_guide_title %}
+  <p class="font-medium text-neutral-black">{{ 'products.sizing_guide' | t }}</p>
+{% endcapture %}
+
 {% capture sizing_guide_content %} 
-<div class="flex flex-wrap gap-4">
-  <img src="{{ settings.products_sizing_guide | image_url }}" width="100%" height="100%" class="aspect-video h-auto w-full">
-</div>
+  <div class="overflow-x-auto text-neutral-black">
+    <table class="w-full border-collapse">
+      <thead>
+        <tr class="uppercase">
+          <th class="border border-neutral-light-grey p-4 text-center">Size</th>
+          <th class="border border-neutral-light-grey p-4 text-center">Chest</th>
+          <th class="border border-neutral-light-grey p-4 text-center">Waist</th>
+          <th class="border border-neutral-light-grey p-4 text-center">HIP</th>
+        </tr> 
+      </thead>
+      <tbody>
+        <tr> 
+          <td class="border border-neutral-light-grey p-4 text-center font-semibold">XS / 34</td>
+          <td class="border border-neutral-light-grey p-4 text-center">82-85</td>
+          <td class="border border-neutral-light-grey p-4 text-center">69-78</td>
+          <td class="border border-neutral-light-grey p-4 text-center">92-95</td>
+        </tr>
+        <tr>
+          <td class="border border-neutral-light-grey p-4 text-center font-semibold">S / 36</td>
+          <td class="border border-neutral-light-grey p-4 text-center">85-88</td>
+          <td class="border border-neutral-light-grey p-4 text-center">72-75</td>
+          <td class="border border-neutral-light-grey p-4 text-center">95-98</td>
+        </tr>
+        <tr>
+          <td class="border border-neutral-light-grey p-4 text-center font-semibold">M / 38</td>
+          <td class="border border-neutral-light-grey p-4 text-center">88-91</td>
+          <td class="border border-neutral-light-grey p-4 text-center">75-78</td>
+          <td class="border border-neutral-light-grey p-4 text-center">98-101</td>
+        </tr>
+        <tr>
+          <td class="border border-neutral-light-grey p-4 text-center font-semibold">L / 40</td>
+          <td class="border border-neutral-light-grey p-4 text-center">91-94</td>
+          <td class="border border-neutral-light-grey p-4 text-center">78-81</td>
+          <td class="border border-neutral-light-grey p-4 text-center">101-104</td>
+        </tr>
+        <tr>
+          <td class="border border-neutral-light-grey p-4 text-center font-semibold">XL / 42</td>
+          <td class="border border-neutral-light-grey p-4 text-center">94-97</td>
+          <td class="border border-neutral-light-grey p-4 text-center">81-84</td>
+          <td class="border border-neutral-light-grey p-4 text-center">104-10</td>
+        </tr>
+        <tr>
+          <td class="border border-neutral-light-grey p-4 text-center font-semibold">XXL / 44</td>
+          <td class="border border-neutral-light-grey p-4 text-center">97-100</td>
+          <td class="border border-neutral-light-grey p-4 text-center">84-87</td>
+          <td class="border border-neutral-light-grey p-4 text-center">107-111</td>
+        </tr>
+        <tr>
+          <td class="border border-neutral-light-grey p-4 text-center font-semibold">3XL / 46</td>
+          <td class="border border-neutral-light-grey p-4 text-center">100-103</td>
+          <td class="border border-neutral-light-grey p-4 text-center">87-90</td>
+          <td class="border border-neutral-light-grey p-4 text-center">111-114</td>
+        </tr>
+        <tr>
+          <td class="border border-neutral-light-grey p-4 text-center font-semibold">4XL / 48</td>
+          <td class="border border-neutral-light-grey p-4 text-center">103-106</td>
+          <td class="border border-neutral-light-grey p-4 text-center">90-93</td>
+          <td class="border border-neutral-light-grey p-4 text-center">114-117</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 {% endcapture %}
 
 {% render 'drawer',
