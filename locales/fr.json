@@ -41,7 +41,8 @@
       "shipping": "Livraison & Retours"
     },
     "categories": {
-      "all": "Tous les produits"
+      "all": "Tous les produits",
+      "best_sellers": "Best sellers"
     }
   },
   "contact": {

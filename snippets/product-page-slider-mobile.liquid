@@ -1,4 +1,57 @@
-<div class="relative block lg:hidden">
+<div
+  class="relative block lg:hidden"
+  x-data="
+    {
+      currentSlide: 0,
+      touchStartX: 0,
+      touchStartY: 0,
+      touchMoveX: 0,
+      touchMoveY: 0,
+      initialDirection: null,
+      touchThreshold: 10,
+
+      handleTouchStart(e) {
+        this.touchStartX = e.touches[0].clientX;
+        this.touchStartY = e.touches[0].clientY;
+        this.initialDirection = null;
+      },
+
+      handleTouchMove(e) {
+        if (this.initialDirection === 'vertical') {
+          return;
+        }
+
+        this.touchMoveX = e.touches[0].clientX;
+        this.touchMoveY = e.touches[0].clientY;
+
+        const diffX = Math.abs(this.touchStartX - this.touchMoveX);
+        const diffY = Math.abs(this.touchStartY - this.touchMoveY);
+
+        if (this.initialDirection === null && (diffX > this.touchThreshold || diffY > this.touchThreshold)) {
+          this.initialDirection = diffX > diffY ? 'horizontal' : 'vertical';
+        }
+
+        if (this.initialDirection === 'horizontal') {
+          e.preventDefault();
+        }
+      },
+
+      handleTouchEnd(e) {
+        if (this.initialDirection !== 'horizontal') return;
+
+        const diff = this.touchStartX - this.touchMoveX;
+
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) {
+            this.currentSlide = Math.min(this.currentSlide + 1, {{ product.images.size | minus: 1 }});
+          } else {
+            this.currentSlide = Math.max(this.currentSlide - 1, 0);
+          }
+        }
+      }
+    }
+  "
+>
   <div
     class="relative touch-pan-x overflow-hidden"
     @touchstart="handleTouchStart"

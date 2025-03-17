@@ -21,14 +21,24 @@
 <footer
   class="mt-8 flex min-h-screen w-full flex-col justify-between gap-24 bg-neutral-black py-8 text-white margin-px-1 lg:gap-0"
 >
-  <nav class="mt-8 flex w-full flex-row justify-between">
-    <p>Toute la collection</p>
-    <p>Chemises</p>
-    <p>Gilets</p>
-    <p>Pantalons</p>
-    <p>Manteaux & Capes</p>
-  </nav>
+  <nav class="mt-8 flex w-full flex-wrap justify-between gap-4">
+    <a href="{{ routes.all_products_collection_url }}" class="link-underline">
+      {{- 'products.categories.all' | t -}}
+    </a>
 
+    <a
+      href="{{ routes.all_products_collection_url }}/?sort_by=best-selling"
+      class="link-underline"
+    >
+      {{- 'products.categories.best_sellers' | t -}}
+    </a>
+
+    {% for collection in collections %}
+      <a href="{{ collection.url }}" class="link-underline">
+        {{ collection.title }}
+      </a>
+    {% endfor %}
+  </nav>
   <div class="mx-auto max-w-[50%]">{% render 'logo-svg' %}</div>
 
   <section class="flex flex-col gap-10">

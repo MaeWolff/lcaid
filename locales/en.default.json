@@ -41,7 +41,8 @@
       "shipping": "Shipping & Return"
     },
     "categories": {
-      "all": "All products"
+      "all": "All products",
+      "best_sellers": "Best sellers"
     }
   },
   "contact": {
