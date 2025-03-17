@@ -43,6 +43,9 @@
     "categories": {
       "all": "All products",
       "best_sellers": "Best sellers"
+    },
+    "sort": {
+      "price_low_to_high": "Price: from lowest to highest"
     }
   },
   "contact": {

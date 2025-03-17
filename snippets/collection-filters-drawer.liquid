@@ -80,6 +80,17 @@
     </details>
   {%- endfor -%}
 
+  <label class="flex cursor-pointer items-center gap-2 p-2">
+    <input 
+      type="radio" 
+      name="sort_by" 
+      value="price-ascending" 
+      {% if collection.sort_by == 'price-ascending' %}checked{% endif %}
+      class="h-4 w-4 accent-neutral-black"
+    >
+    <span>{{ 'products.sort.price_low_to_high' | t }}</span>
+  </label>
+
   <div class="flex flex-col gap-4" style="margin-top: 3rem;">
     <button
       type="submit"

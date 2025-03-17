@@ -43,6 +43,9 @@
     "categories": {
       "all": "جميع المنتجات",
       "best_sellers": "الأكثر مبيعاً"
+    },
+    "sort": {
+      "price_low_to_high": "السعر: من الأقل إلى الأعلى"
     }
   },
   "contact": {
