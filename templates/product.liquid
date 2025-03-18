@@ -1,7 +1,7 @@
 {% assign current_variant = product.selected_or_first_available_variant %}
 {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
 
-<div class="relative mt-[calc(var(--header-height)_+_1rem)] grid w-full grid-cols-1 gap-4 margin-px-1 lg:grid-cols-[1fr_0.7fr] lg:gap-16">
+<div class="relative mt-[calc(var(--header-height)_+_0.5rem)] grid w-full grid-cols-1 gap-4 margin-px-1 lg:grid-cols-[1fr_0.7fr] lg:gap-16">
   <section
     id="product-images"
     x-data="
@@ -50,7 +50,7 @@
         width="32px"
         height="32px"
       >
-      <p>Complete the look</p>
+      <p class="font-medium">{{ 'products.complete_the_look' | t }}</p>
     </a>
 
     {% render 'product-page-slider-mobile' %}

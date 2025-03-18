@@ -74,10 +74,13 @@
   </div>
 </header>
 
+{% comment %} Mobile Menu Overlay {% endcomment %}
+<div id="mobile-menu-overlay" class="fixed inset-0 z-50 hidden bg-neutral-black/40"></div>
+
 {% comment %} Drawer Header {% endcomment %}
 <div
   id="mobile-menu"
-  class="fixed left-0 top-0 z-50 h-full w-[80%] -translate-x-full transform bg-white p-4 transition-transform duration-300 lg:w-[30%]"
+  class="fixed left-0 top-0 z-[60] h-full w-[80%] -translate-x-full transform bg-white p-4 transition-transform duration-300 lg:w-[30%]"
 >
   <div class="flex h-full flex-col items-center gap-6">
     <header class="flex w-full items-center justify-between">

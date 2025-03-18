@@ -18,11 +18,11 @@ html {
 /* Reusable classes */
 
 .btn-primary {
-  @apply w-full rounded-sm bg-neutral-black py-3 text-center text-white hover:bg-neutral-black/80 disabled:bg-neutral-mid-grey;
+  @apply w-full rounded-sm bg-neutral-black py-3 text-center font-medium text-white hover:bg-neutral-black/80 disabled:bg-neutral-mid-grey;
 }
 
 .btn-secondary {
-  @apply cursor-pointer rounded-sm bg-white p-3 text-center text-neutral-black transition-all hover:opacity-80;
+  @apply cursor-pointer rounded-sm bg-white p-3 text-center font-medium text-neutral-black transition-all hover:opacity-80;
 }
 
 /* Link underline effect */

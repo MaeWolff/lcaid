@@ -46,7 +46,8 @@
     },
     "sort": {
       "price_low_to_high": "Price: from lowest to highest"
-    }
+    },
+    "complete_the_look": "Complete the look"
   },
   "contact": {
     "title": "Contact us",

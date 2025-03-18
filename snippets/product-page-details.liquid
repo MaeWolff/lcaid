@@ -1,11 +1,14 @@
 <header class="flex flex-col gap-4">
   <div class="flex flex-col gap-1">
     <p class="text-[12px] text-neutral-mid-grey">
-      <a href="{{  product.collections[0].url }}" class="link-underline"> {{ product.collections[0].title }}</a> >
+      <a href="{{  product.collections[0].url }}" class="link-underline"> {{ product.collections[0].title }}</a>
+      {% if product.collections[0] %}
+        <span> > </span>
+      {% endif %}
       {{ product.category | capitalize }}
     </p>
     <h1 class="text-[16px] font-medium">{% render 'title-case', title: product.title %}</h1>
-    <p class="text-neutral-mid-grey">{{ product.price | money }}</p>
+    <p class="font-medium text-neutral-mid-grey">{{ product.price | money }}</p>
   </div>
 
   <h2>{{ product.metafields.custom.short_description }}</h2>
@@ -13,6 +16,7 @@
 
 <div x-data="productForm()" class="flex flex-col gap-4">
   <div
+    x-show="hasSize || hasColor || hasMaterial"
     class="border border-neutral-light-grey"
     :class="{ 'divide-y divide-neutral-light-grey': [hasSize, hasColor, hasMaterial].filter(Boolean).length > 0 }"
   >

@@ -48,6 +48,13 @@
                       @click="isActive = !isActive; document.getElementById('Filter-{{ filter.param_name }}-{{ forloop.index }}').click();"
                     >
                       <span>{{ filter_value.label }}</span>
+                      {% if filter_value.swatch.color %}
+                        <span 
+                          :class="{ 'border border-neutral-light-grey': '{{ filter_value.swatch.color }}' === '#ffffff' }"
+                          style="background-color: {{ filter_value.swatch.color }};" 
+                          class="ml-2 h-[6px] w-[6px] rounded-full"
+                        ></span>
+                      {% endif %}
                     </div>
                   </div>
                 </li>
