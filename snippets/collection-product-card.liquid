@@ -11,7 +11,7 @@
     <div class="relative aspect-square h-full w-full ">
       {% if product.featured_image %}
         <img
-          src="{{ product.featured_image.src | image_url }}"
+          src="{{ product.featured_image.src | image_url: width: 900 }}"
           alt="{{ product.featured_image.alt | escape }}"
           x-show="!hover"
           x-transition:enter-start="opacity-0"
@@ -24,7 +24,7 @@
         >
 
         <img
-          src="{{ product.images[1] | image_url }}"
+          src="{{ product.images[1] | image_url: width: 900 }}"
           alt="{{ product.images[1].alt | escape }}"
           x-show="hover"
           x-transition:enter-start="opacity-0"
@@ -34,6 +34,7 @@
           class="absolute inset-0 h-full w-full rounded-sm object-cover"
           width="100%"
           height="100%"
+          loading="lazy"
         >
       {% else %}
         <div class="relative aspect-square h-full w-full bg-neutral-black"></div>

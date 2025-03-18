@@ -1,6 +1,7 @@
 {% form 'currency', id: 'currency-switcher' %}
   <div class="relative w-full">
     <select
+      aria-label="currency"
       name="currency"
       onchange="this.form.submit();"
       class="w-full cursor-pointer appearance-none border-0 bg-transparent pr-8"

@@ -18,9 +18,14 @@
         {{ cart.item_count }}
       </p>
 
-      <h5 id="drawer-label" class="text-lg">{{ 'cart.title' | t }}</h5>
+      <h4 id="drawer-label" class="text-lg">{{ 'cart.title' | t }}</h4>
 
-      <button class="group flex items-center gap-2" type="button" data-drawer-hide="cart-drawer">
+      <button
+        class="group flex items-center gap-2"
+        aria-label="close-cart-drawer"
+        type="button"
+        data-drawer-hide="cart-drawer"
+      >
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M1.02096 1.02079C4.88695 4.88679 10.9205 10.9203 10.9205 10.9203M10.9205 1.02079L1.02096 10.9203" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>

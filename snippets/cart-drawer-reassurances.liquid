@@ -24,6 +24,7 @@
         @click="goTo(index)"
         class="h-[6px] w-[6px] rounded-full"
         :class="index === activeIndex ? 'bg-neutral-mid-grey' : 'bg-neutral-light-grey'"
+        aria-label="reassurance-button-{{ index }}"
       ></button>
     </template>
   </div>
