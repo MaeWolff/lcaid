@@ -1,4 +1,5 @@
 {% assign has_size = false %}
+{% assign size_drawer_title = 'products.selectors.size' | t %}
 
 {%- for option in product.options_with_values -%}
   {%- if option.name == 'Size' or option.name == 'Taille' -%}
@@ -6,7 +7,7 @@
   {%- endif -%}
 {%- endfor -%}
 
-{% capture size_drawer_title %}
+{% capture size_drawer_button %}
     <div class="flex w-full justify-between">
       <span class="font-medium">{{  "products.selectors.size" | t}}</span>
 
@@ -47,9 +48,9 @@
 
 {% if has_size %}
   {% render 'drawer',
-    button_text: size_drawer_title,
+    button_text: size_drawer_button,
     button_classes: 'w-full p-4',
-    title: 'Tailles',
+    title: size_drawer_title,
     content: size_drawer_content
   %}
 {% endif %}

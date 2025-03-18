@@ -1,4 +1,5 @@
 {% assign has_materials = false %}
+{% assign materials_drawer_title = 'products.selectors.material' | t %}
 
 {%- for option in product.options_with_values -%}
   {%- if option.name == 'Clothing accessory material' -%}
@@ -6,7 +7,7 @@
   {%- endif -%}
 {%- endfor -%}
 
-{% capture materials_drawer_title %}
+{% capture materials_drawer_button %}
     <div class="flex w-full justify-between">
       <span class="font-medium">{{ "products.selectors.material" | t }}</span>
 
@@ -32,14 +33,24 @@
         <span x-text="material"></span>
       </button>
     </template>
+
+    <div class="mt-12 w-full">
+      <button
+        :disabled="!selectedMaterial"
+        class="btn-primary w-full"
+        @click="closeDrawer()"
+      >
+        {{ 'buttons.apply_selection' | t }}
+      </button>
+    </div>
   </div>
 {% endcapture %}
 
 {% if has_materials %}
   {% render 'drawer',
-    button_text: materials_drawer_title,
+    button_text: materials_drawer_button,
     button_classes: 'w-full p-4',
-    title: 'Materials',
+    title: materials_drawer_title,
     content: materials_drawer_content
   %}
 {% endif %}
