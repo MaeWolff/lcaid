@@ -13,10 +13,10 @@
 {% endschema %}
 
 <section
-  class="flex h-screen w-full flex-col py-16 margin-px-1 lg:grid lg:grid-cols-[1fr_0.75fr]"
+  class="flex min-h-screen w-full flex-col py-16 margin-px-1 lg:grid lg:grid-cols-[1fr_0.75fr]"
   id="contact-form"
 >
-  <article class="flex h-full w-full flex-col justify-center gap-8 rounded-sm bg-neutral-black text-white margin-px-1 lg:gap-16 lg:margin-px-4">
+  <article class="flex min-h-screen w-full flex-col justify-center gap-8 rounded-sm bg-neutral-black text-white margin-px-1 lg:gap-16 lg:margin-px-4">
     <header class="flex flex-col gap-2">
       <h2 class="text-[32px] font-medium">{{ 'contact.title' | t }}</h2>
       <p>{{ 'contact.description' | t }}</p>
@@ -70,7 +70,7 @@
   </article>
 
   <img
-    class="hidden h-full w-full rounded-sm bg-neutral-black/40 object-cover lg:block"
+    class="hidden h-full max-h-screen w-full rounded-sm bg-neutral-black/40 object-cover lg:block"
     src="{{ section.settings.image | image_url }}"
     alt=""
     width="100%"
