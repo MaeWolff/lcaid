@@ -41,7 +41,7 @@
     </div>
 
     <div class="mt-3 flex w-full flex-col items-center gap-1">
-      <p class="line-clamp-1 font-medium">{{ product.title }}</p>
+      <p class="line-clamp-1 font-medium">{% render 'title-case', title: product.title %}</p>
       <div class="flex flex-row gap-2 text-[12px] text-neutral-mid-grey">
         {% if product.compare_at_price %}
           <p class="line-through">{{ product.compare_at_price | money }}</p>

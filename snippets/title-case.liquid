@@ -1,0 +1,24 @@
+{% comment %}
+  Convertit une chaîne en "title case" (première lettre de chaque mot en majuscule)
+  Usage: {% render 'title-case', title: product.title %}
+{% endcomment %}
+
+{% assign words = title | strip | split: ' ' %}
+{% assign title_case = '' %}
+
+{% for word in words %}
+  {% if word != '' %}
+    {% assign lowercase_word = word | downcase %}
+    {% assign first_char = lowercase_word | slice: 0 %}
+    {% assign rest_of_word = lowercase_word | slice: 1, lowercase_word.size %}
+    {% assign capitalized_word = first_char | upcase | append: rest_of_word %}
+
+    {% if forloop.first %}
+      {% assign title_case = capitalized_word %}
+    {% else %}
+      {% assign title_case = title_case | append: ' ' | append: capitalized_word %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{{ title_case }}

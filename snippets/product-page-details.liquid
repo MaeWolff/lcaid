@@ -4,7 +4,7 @@
       <a href="{{  product.collections[0].url }}" class="link-underline"> {{ product.collections[0].title }}</a> >
       {{ product.category | capitalize }}
     </p>
-    <h1 class="text-[16px] font-semibold">{{ product.title | escape }}</h1>
+    <h1 class="text-[16px] font-medium">{% render 'title-case', title: product.title %}</h1>
     <p class="text-neutral-mid-grey">{{ product.price | money }}</p>
   </div>
 
