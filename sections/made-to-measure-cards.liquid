@@ -1,12 +1,67 @@
 {% schema %}
 {
   "name": "3. Cards",
-  "settings": []
+  "settings": [],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Carte",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Titre de la carte"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texte",
+          "default": "Description de la carte."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cards horizontales",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "title": "Moodboard & Dessin",
+            "text": "LCAID crée à partir de zéro un modèle qui vous convient et s'inspire de votre culture tout en le modernisant."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "Prise de mesure",
+            "text": "En physique ou en distanciel via une application je ne sais quoi du je ne sais rien."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "Choix du tissu",
+            "text": "LCAID crée à partir de zéro un modèle qui vous convient et s'inspire de votre culture tout en le modernisant."
+          }
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}
 
-{% render 'vite-tag' with 'js/made-to-measure-cards.js' %}
-
-<section>
-  <p>TODO: Cards</p>
+<section class="overflow-x-hidden">
+  <div class="flex translate-x-24 flex-col gutter-gap-1 margin-px-1 lg:flex-row">
+    {% for block in section.blocks %}
+      <div
+        class="flex h-[460px] w-full flex-col justify-between rounded-sm bg-neutral-light-grey p-8 lg:max-w-[426px]"
+      >
+        <h3 class="text-2xl font-medium">{{ block.settings.title }}</h3>
+        <p>{{ block.settings.text }}</p>
+      </div>
+    {% endfor %}
+  </div>
 </section>
