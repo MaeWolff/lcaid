@@ -1,19 +1,27 @@
 {% form 'localization' %}
-  <select
-    name="language_code"
-    id="language-selector"
-    @change="event.target.form.submit()"
-    class="cursor-pointer bg-transparent"
-  >
-    {% for language in localization.available_languages %}
-      <option
-        value="{{ language.iso_code }}"
-        {% if localization.language.iso_code == language.iso_code %}
-          selected
-        {% endif %}
-      >
-        {{ language.iso_code | upcase }}
-      </option>
-    {% endfor %}
-  </select>
+  <div class="relative w-full">
+    <select
+      name="language_code"
+      id="language-selector"
+      class="w-full cursor-pointer appearance-none border-0 bg-transparent pr-8"
+      onchange="this.form.submit();"
+    >
+      {% for language in localization.available_languages %}
+        <option
+          value="{{ language.iso_code }}"
+          {% if localization.language.iso_code == language.iso_code %}
+            selected
+          {% endif %}
+        >
+          {{ language.iso_code | upcase }}
+        </option>
+      {% endfor %}
+    </select>
+
+    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
+      <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+        <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+      </svg>
+    </div>
+  </div>
 {% endform %}
