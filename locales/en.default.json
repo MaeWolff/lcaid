@@ -6,7 +6,11 @@
     },
     "header": {
       "mobile": {
-        "close": "Close"
+        "close": "Close",
+        "menu": {
+          "shop": "Shop",
+          "backToMainMenu": "Shop, Made to measure, About"
+        }
       }
     }
   },

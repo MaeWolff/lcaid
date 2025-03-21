@@ -6,7 +6,11 @@
     },
     "header": {
       "mobile": {
-        "close": "Fermer"
+        "close": "Fermer",
+        "menu": {
+          "shop": "Boutique",
+          "backToMainMenu": "Boutique, Le Sur-Mesure, La Maison"
+        }
       }
     }
   },

@@ -89,32 +89,13 @@
     </header>
 
     <nav class="flex w-full flex-col gap-2 text-[16px]">
-      <div x-data="{ open: false }">
-        <button id="shop-link" class="flex w-full justify-between py-2" @click="open = !open">
-          <p>Boutique</p>
-          <span :class="open ? 'rotate-90' : ''" class="transition-transform duration-200">
+      <div>
+        <button id="shop-link" class="flex w-full justify-between py-2">
+          <p>{{ 'general.header.mobile.menu.shop' | t }}</p>
+          <span class="transition-transform duration-200">
             {% render 'icon-arrow-right-simple' %}
           </span>
         </button>
-
-        <div x-show="open" class="ml-4 flex flex-col gap-2 overflow-hidden text-[14px] transition-all duration-300">
-          <a href="{{ routes.all_products_collection_url }}" class="flex w-full justify-between py-2">
-            {{- 'products.categories.all' | t -}}
-          </a>
-
-          <a
-            href="{{ routes.all_products_collection_url }}/?sort_by=best-selling"
-            class="flex w-full justify-between py-2"
-          >
-            {{- 'products.categories.best_sellers' | t -}}
-          </a>
-
-          {% for collection in collections %}
-            <a href="{{ collection.url }}" class="flex w-full justify-between py-2">
-              {{ collection.title }}
-            </a>
-          {% endfor %}
-        </div>
       </div>
 
       {% for link in linklists['main-menu'].links %}
@@ -141,7 +122,76 @@
         {% render 'localization-select' %}
       </div>
 
-      <div class="flex w-full justify-between">
+      <div class="mt-12 flex w-full justify-between text-neutral-dark-grey">
+        <p x-data="{ year: `©LCAID ${new Date().getFullYear()}` }" x-text="year"></p>
+        <a href="https://fichu.studio" target="_blank" class="link-underline">(by) fichustudio</a>
+      </div>
+    </footer>
+  </div>
+</div>
+
+{% comment %} Boutique Submenu Layer {% endcomment %}
+<div
+  id="shop-submenu"
+  class="fixed left-0 top-0 z-[70] h-full w-[80%] -translate-x-full transform bg-white p-4 transition-transform duration-300 lg:w-[30%]"
+>
+  <div class="flex h-full flex-col items-center gap-6">
+    <header class="flex w-full items-center justify-between">
+      <p class="text-[18px] font-medium">Menu</p>
+      <button id="close-shop-submenu" aria-label="close-shop-submenu">{% render 'icon-close' %}</button>
+    </header>
+
+    <nav class="flex w-full flex-col gap-2 text-[16px]">
+      <button
+        id="back-to-main-menu"
+        aria-label="back-to-main-menu"
+        class="link-underline flex w-fit flex-row items-center gap-2 text-[12px] text-neutral-dark-grey"
+      >
+        <svg width="5" height="8" viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3.82861 1.11279C1.61962 3.32178 1.01686 3.95782 1.01686 3.95782L3.82861 6.76927" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <p>{{ 'general.header.mobile.menu.backToMainMenu' | t }}</p>
+      </button>
+
+      <a href="{{ routes.all_products_collection_url }}" class="flex w-full justify-between py-2">
+        {{- 'products.categories.all' | t -}}
+        {% render 'icon-arrow-right-simple' %}
+      </a>
+
+      <a
+        href="{{ routes.all_products_collection_url }}/?sort_by=best-selling"
+        class="flex w-full justify-between py-2"
+      >
+        {{- 'products.categories.best_sellers' | t -}}
+        {% render 'icon-arrow-right-simple' %}
+      </a>
+
+      {% for collection in collections %}
+        <a href="{{ collection.url }}" class="flex w-full justify-between py-2">
+          {{ collection.title }}
+          {% render 'icon-arrow-right-simple' %}
+        </a>
+      {% endfor %}
+    </nav>
+
+    <footer class="inline-flex h-full w-full flex-col justify-end gap-6">
+      <hr>
+
+      <nav class="flex w-full flex-col gap-2">
+        {% for link in linklists.policies.links %}
+          <a href="{{ link.url }}" class="link-underline w-fit">
+            {{ link.title -}}
+          </a>
+        {% endfor %}
+      </nav>
+
+      <div class="flex flex-row gap-4">
+        {% render 'currency-select' %}
+        {% render 'localization-select' %}
+      </div>
+
+      <div class="mt-12 flex w-full justify-between text-neutral-dark-grey">
         <p x-data="{ year: `©LCAID ${new Date().getFullYear()}` }" x-text="year"></p>
         <a href="https://fichu.studio" target="_blank" class="link-underline">(by) fichustudio</a>
       </div>

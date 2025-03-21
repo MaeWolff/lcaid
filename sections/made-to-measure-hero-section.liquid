@@ -18,11 +18,14 @@
 }
 {% endschema %}
 
-<section class="relative flex h-screen w-full flex-col items-center justify-center gap-4 font-medium margin-px-1">
+<section
+  id="panel"
+  class="relative flex h-screen w-full flex-col items-center justify-center gap-4 overflow-hidden font-medium margin-px-1"
+>
   <h1 class="text-center md:max-w-[48ch]">{{ section.settings.title }}</h1>
   <h2 class="text-center md:max-w-[48ch]">{{ section.settings.subtitle }}</h2>
 
-  <div class="absolute bottom-0 w-screen">
+  <div class="absolute bottom-0 w-screen lg:-bottom-24">
     {% render 'logo-svg' %}
   </div>
 </section>

@@ -37,6 +37,11 @@
         "content": "Réassurance"
       },
       {
+        "type": "image_picker",
+        "id": "reassurance_image_1",
+        "label": "Image"
+      },
+      {
         "type": "text",
         "id": "reassurance_title_1",
         "label": "Titre",
@@ -49,6 +54,11 @@
         "default": "Eget ut nullam adipiscing vitae tortor nec. Odio curabitur cras ultrices curabitur turpis."
       },
       {
+        "type": "image_picker",
+        "id": "reassurance_image_2",
+        "label": "Image"
+      },
+      {
         "type": "text",
         "id": "reassurance_title_2",
         "label": "Titre",
@@ -59,6 +69,11 @@
         "id": "reassurance_text_2",
         "label": "Description",
         "default": "Eget ut nullam adipiscing vitae tortor nec."
+      },
+      {
+        "type": "image_picker",
+        "id": "reassurance_image_3",
+        "label": "Image"
       },
       {
         "type": "text",
