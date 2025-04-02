@@ -25,6 +25,10 @@
     {% form 'contact', class: 'lg:max-w-[80%] flex flex-col gap-6', id: 'contact-form-element' %}
       {{ form.errors | default_errors }}
 
+      {% if form.posted_successfully? %}
+        <div id="form-success" class="hidden" data-success="true"></div>
+      {% endif %}
+
       <div class="grid grid-cols-2 gap-1">
         <div class="flex flex-col gap-1">
           <label for="email">{{ 'contact.form.email' | t }}</label>
@@ -88,49 +92,19 @@
   document.addEventListener('DOMContentLoaded', function () {
     const contactForm = document.getElementById('contact-form-element');
     const submitButton = document.getElementById('contact-submit-button');
+    const formSuccess = document.getElementById('form-success');
+
+    if (formSuccess && formSuccess.dataset.success === 'true') {
+      showToast("{{ 'contact.form.success' | t }}", 'success');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      history.replaceState(null, '', window.location.pathname);
+    }
 
     if (!contactForm || !submitButton) return;
 
     contactForm.addEventListener('submit', function (event) {
-      event.preventDefault();
-
       submitButton.classList.add('btn-loading');
       submitButton.disabled = true;
-
-      const formData = new FormData(contactForm);
-
-      fetch('{{ routes.root_url }}contact#contact-form', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          Accept: 'application/json',
-        },
-      })
-        .then((response) => {
-          if (response.ok) {
-            showToast(
-              "{{ 'contact.form.success' | t | default: 'Votre message a été envoyé avec succès!' }}",
-              'success',
-            );
-            contactForm.reset();
-          } else {
-            showToast(
-              "{{ 'contact.form.error' | t | default: 'Une erreur est survenue. Veuillez réessayer.' }}",
-              'error',
-            );
-          }
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-          showToast(
-            "{{ 'contact.form.error' | t | default: 'Une erreur est survenue. Veuillez réessayer.' }}",
-            'error',
-          );
-        })
-        .finally(() => {
-          submitButton.classList.remove('btn-loading');
-          submitButton.disabled = false;
-        });
     });
   });
 </script>
