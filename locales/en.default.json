@@ -60,7 +60,9 @@
       "name": "Name",
       "email": "Email",
       "message": "Message",
-      "send": "Send"
+      "send": "Send",
+      "success": "Your message has been sent successfully!",
+      "error": "An error occurred. Please try again."
     }
   },
   "buttons": {

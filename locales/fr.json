@@ -16,7 +16,7 @@
   },
   "cart": {
     "title": "Panier",
-    "taxes": "Taxe incluse. Frais d’expédition et réductions calculés à l’étape du paiement.",
+    "taxes": "Taxe incluse. Frais d'expédition et réductions calculés à l'étape du paiement.",
     "empty": "Panier vide...",
     "add": "Ajouter au panier",
     "estimatedTotal": "Total estimé",
@@ -60,7 +60,9 @@
       "name": "Nom",
       "email": "Email",
       "message": "Message",
-      "send": "Envoyer"
+      "send": "Envoyer",
+      "success": "Votre message a été envoyé avec succès !",
+      "error": "Une erreur est survenue. Veuillez réessayer."
     }
   },
   "buttons": {
