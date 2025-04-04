@@ -39,7 +39,10 @@
 }
 {% endschema %}
 
-<section id="panel" class="flex min-h-screen w-screen flex-col gap-8 bg-white py-16 margin-px-1 lg:grid lg:grid-cols-2">
+<section
+  id="panel"
+  class="mt-20 flex min-h-screen w-screen flex-col gap-8 bg-white py-16 margin-px-1 lg:grid lg:grid-cols-2"
+>
   <article class="flex h-full flex-col items-center justify-center gap-8 text-center lg:px-10">
     <p class="w-fit bg-neutral-light-grey font-medium">{{ section.settings.discount }}</p>
     <p>{{ section.settings.text_1 }}</p>
@@ -57,7 +60,7 @@
       id="main-image"
       src="{{ section.settings.image_1 | image_url }}"
       alt="Image principale"
-      class="h-full w-full rounded-sm object-cover"
+      class="h-[80vh] w-full rounded-sm object-cover"
       width="100%"
       height="100%"
     >
