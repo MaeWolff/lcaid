@@ -18,6 +18,11 @@
           "id": "text",
           "label": "Texte",
           "default": "Description de la carte."
+        },
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Image de fond"
         }
       ]
     }
@@ -59,9 +64,25 @@
       <div
         class="relative flex h-[460px] w-full flex-col justify-between overflow-hidden rounded-sm bg-neutral-black p-8 text-white lg:max-w-[426px]"
       >
-        <h3 class="text-2xl font-medium">{{ block.settings.title }}</h3>
-        <p>{{ block.settings.text }}</p>
-        <div class="absolute -top-1/2 left-1/4 h-[500px] w-[500px] rounded-full bg-white/10"></div>
+        {% if block.settings.background_image %}
+          <div class="absolute inset-0 z-0">
+            <img
+              src="{{ block.settings.background_image | image_url }}"
+              alt="{{ block.settings.title }}"
+              class="h-full w-full object-cover opacity-50"
+              width="{{ block.settings.background_image.width }}"
+              height="{{ block.settings.background_image.height }}"
+              loading="lazy"
+            >
+          </div>
+        {% else %}
+          <div class="absolute -top-1/2 left-1/4 h-[500px] w-[500px] rounded-full bg-white/10"></div>
+        {% endif %}
+
+        <div class="relative z-10 flex h-full flex-col justify-between">
+          <h3 class="text-2xl font-medium">{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </div>
       </div>
     {% endfor %}
   </div>
